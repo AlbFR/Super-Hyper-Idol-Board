@@ -10,8 +10,8 @@ import panels.Canvas;
 public class Window extends JFrame {
    public Window() {
       super();
-      this.setSize(900, 600);
-      this.setLayout(new BorderLayout(170, 40));
+      this.setSize(800, 500);
+      this.setLayout(new BorderLayout(160, 40));
       this.setTitle("Board");
 
       this.add(new MenuOptions(), BorderLayout.WEST);

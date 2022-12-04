@@ -4,14 +4,22 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import canvasObjects.*;
+
+enum selectedDrawingOption {
+   CREATE_CLASS
+}
+
 public class Canvas extends JPanel implements MouseListener {
+   private ArrayList<ClassCanvas> canvasClasses;
    public Canvas() {
       super();
 
-      this.setBackground(Color.green);
+      this.setBackground(Color.white);
    }   
 
    public void paintComponent(Graphics g) {
@@ -20,6 +28,7 @@ public class Canvas extends JPanel implements MouseListener {
 
    @Override
    public void mouseClicked(MouseEvent me) {
+
       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
    }
 

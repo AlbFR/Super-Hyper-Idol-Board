@@ -1,6 +1,7 @@
 package panels;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
 import javax.swing.JPanel;
 
@@ -11,7 +12,7 @@ public class MenuOptions extends JPanel {
    public MenuOptions() {
       super();
 
-      this.setSize(150, 50);
+      this.setBackground(Color.lightGray);
       this.add(new EditionPanel());
       this.add(new LayerChanger());
    }
