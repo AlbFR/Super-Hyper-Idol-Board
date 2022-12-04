@@ -12,6 +12,9 @@ public class EditionPanel extends JPanel {
    private SelectedDrawingOption selected_option;
    public MenuButton create_class_button;
    public MenuButton delete_class_button;
+   public MenuButton change_name_button;
+   public MenuButton add_attribute_button;
+   public MenuButton add_method_button;
 
    public EditionPanel() {
       super();
@@ -19,6 +22,9 @@ public class EditionPanel extends JPanel {
       // delete_class_button = new DeleteClassButton();
       create_class_button = new MenuButton("Create Class");
       delete_class_button = new MenuButton("Delete Class");
+      change_name_button = new MenuButton("Change Name");
+      add_attribute_button = new MenuButton("Add Attribute");
+      add_method_button = new MenuButton("Add Method");
       // create_class_button.addActionListener(event -> {
       //    selected_option = SelectedDrawingOption.CREATE_CLASS;
       // });
@@ -27,6 +33,9 @@ public class EditionPanel extends JPanel {
       this.setLayout(new GridLayout(3, 2));
       this.add(create_class_button);
       this.add(delete_class_button);
+      this.add(change_name_button);
+      this.add(add_attribute_button);
+      this.add(add_method_button);
    }
 
    public SelectedDrawingOption getSelectedOption() {

@@ -29,7 +29,8 @@ public class CanvasClass {
 }
 
 class CanvasClassFramework {
-   Color color = Color.black;
+   Color bound_color = Color.black;
+   static Color color = Color.black;
    Rectangle bounds;
    // ArrayList<Point> separation_points;
    Point separation_points[] = new Point[4];
@@ -40,7 +41,7 @@ class CanvasClassFramework {
    private static final int method_height = 10;
 
    public CanvasClassFramework() {
-      bounds = new Rectangle(20, 20, 100, name_height + 2*marginy);
+      bounds = new Rectangle(20, 20, 100, name_height + 6*marginy);
       separation_points[0] = new Point(this.bounds.x, this.bounds.y+2*marginy+name_height);
       separation_points[1] = new Point(this.bounds.x+this.bounds.width, this.bounds.y+2*marginy+name_height);
       separation_points[2] = new Point(this.bounds.x, this.bounds.y+4*marginy+name_height);
@@ -59,7 +60,10 @@ class CanvasClassFramework {
    }
 
    public void paint(Graphics g) {
-      g.setColor(color);
+      g.setColor(bound_color);
       g.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
+      g.setColor(color);
+      g.drawLine(separation_points[0].x, separation_points[0].y, separation_points[1].x, separation_points[1].y);
+      g.drawLine(separation_points[2].x, separation_points[2].y, separation_points[3].x, separation_points[3].y);
    }
 }
