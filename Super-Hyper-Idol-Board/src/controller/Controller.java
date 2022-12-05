@@ -22,6 +22,15 @@ public class Controller extends JPanel implements MouseListener {
          canvas.repaint();
       });
 
+      menuOptions.editionPanel.delete_class_button.addActionListener(event -> {
+         canvas.deleteCanvasClass(canvas.focused_class);
+         canvas.repaint();
+      });
+
+      
+
+      // menuOptions.editio
+
       this.setBackground(Color.CYAN);
       this.setLayout(new BorderLayout(160, 40));      
       this.add(menuOptions, BorderLayout.WEST);

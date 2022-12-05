@@ -55,9 +55,13 @@ public class Canvas extends JPanel {
    }
 
    public boolean deleteCanvasClass(int k) {
-      if (canvasClasses.size() == 0)
+      if (k < 0 || canvasClasses.size() <= k)
          return false;
-      focused_class--;
+      if (k == focused_class)
+         this.setNewFocusedClass(-1);
+      if (k < focused_class)
+         setNewFocusedClass(focused_class-1);
+      canvasClasses.remove(k);
       return true;
    }
 
