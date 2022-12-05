@@ -2,6 +2,7 @@ package panels.menuOptions;
 
 import java.awt.GridLayout;
 import java.awt.Graphics;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 import buttons.menuOptions.*;
@@ -18,19 +19,14 @@ public class EditionPanel extends JPanel {
 
    public EditionPanel() {
       super();
-      // create_class_button = new CreateClassButton();
-      // delete_class_button = new DeleteClassButton();
       create_class_button = new MenuButton("Create Class");
       delete_class_button = new MenuButton("Delete Class");
       change_name_button = new MenuButton("Change Name");
       add_attribute_button = new MenuButton("Add Attribute");
       add_method_button = new MenuButton("Add Method");
-      // create_class_button.addActionListener(event -> {
-      //    selected_option = SelectedDrawingOption.CREATE_CLASS;
-      // });
-      // delete_class_button.addActionListener(event -> selected_option = SelectedDrawingOption.DELETE_CLASS);
 
       this.setLayout(new GridLayout(3, 2));
+      this.setBackground(new Color(50, 205, 232));
       this.add(create_class_button);
       this.add(delete_class_button);
       this.add(change_name_button);

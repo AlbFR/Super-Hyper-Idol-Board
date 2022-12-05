@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
 import panels.*;
@@ -20,9 +22,12 @@ public class Controller extends JPanel implements MouseListener {
          canvas.repaint();
       });
 
+      this.setBackground(Color.CYAN);
       this.setLayout(new BorderLayout(160, 40));      
       this.add(menuOptions, BorderLayout.WEST);
       this.add(canvas, BorderLayout.CENTER);
+      this.addMouseListener(this);
+      this.canvas.addMouseListener(this);
    }
 
    public void paintComponent(Graphics g) {
@@ -31,10 +36,14 @@ public class Controller extends JPanel implements MouseListener {
       canvas.paintComponents(g);
    }
 
+   public void setNewFocusedClass(int new_focus) {
+      this.canvas.setNewFocusedClass(new_focus);
+   }
+
    @Override
    public void mouseClicked(MouseEvent me) {
-      // System.out.println(me.getX()-160);
-      // System.out.println(me.getY()-40);
+      setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
+      this.repaint();
    }
    @Override
    public void mousePressed(MouseEvent me) {}

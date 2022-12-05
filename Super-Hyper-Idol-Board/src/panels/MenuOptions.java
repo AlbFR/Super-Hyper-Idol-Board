@@ -1,5 +1,6 @@
 package panels;
 
+import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Color;
 
@@ -17,6 +18,7 @@ public class MenuOptions extends JPanel {
       super();
 
       this.setBackground(Color.lightGray);
+      this.setLayout(new GridLayout(3, 0));
 
       editionPanel = new EditionPanel();
       layerChanger = new LayerChanger();

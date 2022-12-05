@@ -26,10 +26,18 @@ public class CanvasClass {
    public void paint(Graphics g) {
       this.structure.paint(g);
    }
+
+   public boolean clickedOnRectangle(int x, int y) {
+      return this.structure.clickedOnRectangle(x, y);
+   }
+
+   public void setBoundColor(Color bound_color) {
+      this.structure.bound_color = bound_color;
+   }
 }
 
 class CanvasClassFramework {
-   Color bound_color = Color.black;
+   public Color bound_color = Color.black;
    static Color color = Color.black;
    Rectangle bounds;
    // ArrayList<Point> separation_points;
@@ -57,6 +65,16 @@ class CanvasClassFramework {
       this.separation_points[2].y += method_height;
       this.separation_points[3].y += method_height;
       this.bounds.width += method_height;
+   }
+
+   public boolean clickedOnRectangle(int x, int y) {
+      if (x < this.bounds.x || this.bounds.x+this.bounds.width < x) {
+         return false;
+      }
+      if (y < this.bounds.y || this.bounds.y+this.bounds.height < y) {
+         return false;
+      }
+      return true;
    }
 
    public void paint(Graphics g) {
