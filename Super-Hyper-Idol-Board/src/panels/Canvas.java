@@ -18,12 +18,14 @@ enum selectedDrawingOption {
 public class Canvas extends JPanel implements MouseMotionListener { 
    private ArrayList<CanvasClass> canvasClasses;
    public int focused_class;
+   public int moving_class;
    private Color focused_bound_color;
    
    public Canvas() {
       super();
       
       focused_class = -1; // There's no focused class at the beginning
+      moving_class = -1;
       focused_bound_color = new Color(50, 205, 231);
       this.setBackground(Color.white);
       this.setSize(660, 500);
