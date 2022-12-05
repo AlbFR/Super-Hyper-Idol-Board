@@ -34,6 +34,12 @@ public class CanvasClass {
    public void setBoundColor(Color bound_color) {
       this.structure.bound_color = bound_color;
    }
+   public void setXY(int x, int y) {
+       this.structure.setXY(x,y);
+   }
+   public void recalculateGeometry() {
+       this.structure.recalculateGeometry();
+   }
 }
 
 class CanvasClassFramework {
@@ -83,5 +89,16 @@ class CanvasClassFramework {
       g.setColor(color);
       g.drawLine(separation_points[0].x, separation_points[0].y, separation_points[1].x, separation_points[1].y);
       g.drawLine(separation_points[2].x, separation_points[2].y, separation_points[3].x, separation_points[3].y);
+   }
+   
+   public void setXY(int x, int y) {
+       this.bounds.x = x;
+       this.bounds.y = y; 
+   }
+   public void recalculateGeometry() {
+      separation_points[0] = new Point(this.bounds.x, this.bounds.y+2*marginy+name_height);
+      separation_points[1] = new Point(this.bounds.x+this.bounds.width, this.bounds.y+2*marginy+name_height);
+      separation_points[2] = new Point(this.bounds.x, this.bounds.y+4*marginy+name_height);
+      separation_points[3] = new Point(this.bounds.x+this.bounds.width, this.bounds.y+4*marginy+name_height);
    }
 }

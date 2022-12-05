@@ -22,11 +22,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
    
    public Canvas() {
       super();
-
+      
       focused_class = -1; // There's no focused class at the beginning
       focused_bound_color = new Color(50, 205, 231);
       this.setBackground(Color.white);
       this.setSize(660, 500);
+      this.addMouseMotionListener(this);
       canvasClasses = new ArrayList<CanvasClass>();
    }   
 
@@ -74,15 +75,19 @@ public class Canvas extends JPanel implements MouseMotionListener {
          canvasClasses.get(i).paint(g);
       }
    }
-
+   
     @Override
     public void mouseDragged(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (focused_class != -1){
+            canvasClasses.get(focused_class).setXY(me.getX(), me.getY());
+            this.canvasClasses.get(focused_class).recalculateGeometry();
+            this.repaint();
+        }
     }
-
+    
+    
+    
     @Override
     public void mouseMoved(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-   
 }
