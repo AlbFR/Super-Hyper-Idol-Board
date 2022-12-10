@@ -35,6 +35,6 @@ public class CanvasClassLabels extends JPanel {
        this.y = y; 
    }
    public void recalculateGeometry() {
-       this.name_label.setBounds(this.x,this.y, 100,100);
+       this.name_label.setBounds(this.x+5,this.y-40, 100,100);
    }
 }
