@@ -49,8 +49,11 @@ public class CanvasClass extends JPanel {
        this.x = x;
        this.y = y;
        this.structure.setXY(x,y);
+       this.labels.setXY(x,y);
+       this.repaint();
    }
    public void recalculateGeometry() {
        this.structure.recalculateGeometry();
+       this.labels.recalculateGeometry();
    }
 }
