@@ -78,6 +78,10 @@ public class Canvas extends JPanel implements MouseMotionListener {
       }
    }
    
+   public void movingClassDetector(MouseEvent me) {
+       
+   }
+   
     @Override
     public void mouseDragged(MouseEvent me) {
         if (focused_class != -1){

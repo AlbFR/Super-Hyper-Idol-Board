@@ -53,9 +53,15 @@ public class Controller extends JPanel implements MouseListener {
    public void mouseClicked(MouseEvent me) {
       setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
       this.repaint();
+      this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
+      this.repaint();
    }
    @Override
-   public void mousePressed(MouseEvent me) {}
+   public void mousePressed(MouseEvent me) {
+      setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
+      this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
+      this.repaint();
+   }
    @Override
    public void mouseReleased(MouseEvent me) {}
    @Override
