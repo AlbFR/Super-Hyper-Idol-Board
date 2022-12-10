@@ -42,7 +42,7 @@ public class Controller extends JPanel implements MouseListener {
    public void paintComponent(Graphics g) {
       super.paintComponent(g);
       menuOptions.paintComponent(g);
-      canvas.paintComponents(g);
+      canvas.paintComponent(g);
    }
 
    public void setNewFocusedClass(int new_focus) {

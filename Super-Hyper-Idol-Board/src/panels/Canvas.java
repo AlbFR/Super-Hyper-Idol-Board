@@ -34,7 +34,8 @@ public class Canvas extends JPanel implements MouseMotionListener {
    }   
 
    public void createNewCanvasClass() {
-      canvasClasses.add(new CanvasClass());
+      canvasClasses.add(new CanvasClass("caca"));
+      this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
       this.setNewFocusedClass(canvasClasses.size()-1);
       this.repaint();
    }
@@ -49,7 +50,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
    }
 
    public ArrayList<CanvasClass> getCanvasClasses() {
-      return this.canvasClasses;
+       return this.canvasClasses;
    }
 
    public int clickedOnAnyClass(int x, int y) {
@@ -71,15 +72,11 @@ public class Canvas extends JPanel implements MouseMotionListener {
       return true;
    }
 
-   public void paint(Graphics g) {
-      super.paint(g);
+   public void paintComponent(Graphics g) {
+      super.paintComponent(g);
       for (int i=0;i<canvasClasses.size();++i) {
-         canvasClasses.get(i).paint(g);
+         canvasClasses.get(i).paintComponent(g);
       }
-   }
-   
-   public void movingClassDetector(MouseEvent me) {
-       
    }
    
     @Override
