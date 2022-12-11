@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class CanvasClass extends JPanel {
+<<<<<<< HEAD
 	private CanvasClassFramework structure;
 	private CanvasClassLabels labels;
 	private String name;
@@ -39,6 +40,40 @@ public class CanvasClass extends JPanel {
 		this.structure.paint(g);
 		this.labels.paintComponent(g);
 	}
+=======
+   private CanvasClassFramework structure;
+   private CanvasClassLabels labels;
+   private String name;
+   private ArrayList<String> attributes;
+   private ArrayList<String> methods;
+   private static Color color;
+   private int x;
+   private int y;
+   private boolean focused;
+   public CanvasClass(String name) {
+      this.x = 20;
+      this.y = 20;
+      structure = new CanvasClassFramework(this.x, this.y);
+      labels = new CanvasClassLabels(this.x, this.y, name);
+      this.setFocused(true);
+      this.setBoundColor(Color.BLACK);
+      
+      this.add(this.labels);
+   }
+   public void addAttribute(String attribute) {
+      attributes.add(attribute);
+      structure.addAttribute();
+   }
+   public void addMethod(String method) {
+      methods.add(method);
+      structure.addMethod();
+   }
+    public void paintComponent(Graphics g) {
+      super.paintComponent(g);
+      this.structure.paint(g);
+      this.labels.paintComponent(g);
+    }
+>>>>>>> 78ce4d2 (Color changer functionality implemented with bugs to be fixed in later versions.)
 
 	public boolean clickedOnRectangle(int x, int y) {
 		return this.structure.clickedOnRectangle(x, y);
@@ -49,6 +84,7 @@ public class CanvasClass extends JPanel {
 		this.labels.setCanvasClassLabelName(name);
 	}
 
+<<<<<<< HEAD
 	public void printLabelXY() {
 		this.labels.printXY();
 	}
@@ -70,4 +106,27 @@ public class CanvasClass extends JPanel {
 		this.structure.recalculateGeometry();
 		this.labels.recalculateGeometry(x, y);
 	}
+=======
+   public void setBoundColor(Color bound_color) {
+      this.structure.bound_color = bound_color;
+      this.structure.setBoundColor(bound_color);
+   }
+   
+   public void setFocused(boolean focused){
+      this.focused = focused;
+      this.structure.setFocused(focused);
+   }
+   
+   public void setXY(int x, int y) {
+       this.x = x;
+       this.y = y;
+       this.structure.setXY(x,y);
+       this.labels.setXY(x,y);
+       this.repaint();
+   }
+   public void recalculateGeometry() {
+       this.structure.recalculateGeometry();
+       this.labels.recalculateGeometry();
+   }
+>>>>>>> 78ce4d2 (Color changer functionality implemented with bugs to be fixed in later versions.)
 }

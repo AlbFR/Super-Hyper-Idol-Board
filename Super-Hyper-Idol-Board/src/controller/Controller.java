@@ -34,9 +34,10 @@ public class Controller extends JPanel implements MouseListener {
 			canvas.repaint();
 		});
                 
-                //menuOptions.colorComboBox.addActionListener(event -> {
-                //        canvas.getFocusedCanvasClass().setBoundColor(Color.BLACK);
-                //});
+                menuOptions.editionPanel.change_color_button.addActionListener(event -> {
+                        canvas.getFocusedCanvasClass().setBoundColor(menuOptions.colorComboBox.getColor());
+                        canvas.repaint();
+                });
 
 
 		this.setBackground(Color.CYAN);
