@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import panels.menuOptions.EditionPanel;
@@ -25,6 +26,8 @@ public class MenuOptions extends JPanel {
       editionPanel = new EditionPanel();
       textFieldPanel = new TextFieldPanel();
       layerChanger = new LayerChanger();
+
+      // this.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
      
       this.add(editionPanel);
       this.add(textFieldPanel);

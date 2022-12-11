@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.util.ArrayList;
 
-
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import canvasObjects.*;
@@ -27,10 +27,13 @@ public class Canvas extends JPanel implements MouseMotionListener {
       focused_class = -1; // There's no focused class at the beginning
       moving_class = -1;
       focused_bound_color = new Color(50, 205, 231);
+      this.setLayout(null);
       this.setBackground(Color.white);
-      this.setSize(660, 500);
+      // this.setSize(160, 500);
       this.addMouseMotionListener(this);
       canvasClasses = new ArrayList<CanvasClass>();
+
+      // this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
    }   
 
    public void createNewCanvasClass() {

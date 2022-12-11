@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public final class CanvasClassLabels extends JPanel {
-   public JLabel name_label;
+   public CanvasClassName name_label;
    public ArrayList<JLabel> attributes_label;
    public ArrayList<JLabel> methods_label;
    private int x;
@@ -19,33 +19,58 @@ public final class CanvasClassLabels extends JPanel {
    public CanvasClassLabels(int x, int y, String name) {
        this.x = x;
        this.y = y;
-       //this.setSize(110, 80);
-       this.name_label = new JLabel();
-       this.name_label.setBorder(LineBorder.createGrayLineBorder());
-       this.setCanvasClassLabelName(name);
-       this.name_label.setBounds(this.x,this.y,100,100);
-       this.name_label.setHorizontalAlignment(SwingConstants.CENTER);
-       this.name_label.setVerticalAlignment(SwingConstants.TOP);
+       this.name_label = new CanvasClassName(name, this.x, this.y);
        this.add(this.name_label);
    }
 
-   public void setXY(int x, int y) {
+    public void setXY(int x, int y) {
        this.x = x;
        this.y = y; 
-   }
+    }
    
-   public void recalculateGeometry() {
-       this.name_label.setBounds(this.x,this.y, 100,100);
-   }
+    public void recalculateGeometry() {
+        this.name_label.recalculateGeometry(this.x, this.y);
+    }
    
-   public void setCanvasClassLabelName(String name){
-       this.name_label.setText(name);
-       this.recalculateGeometry();
-   }
+    public void setCanvasClassLabelName(String name) {
+        this.name_label.setName(name);
+        this.recalculateGeometry();
+    }
       
-   @Override
-   public void paintComponent(Graphics g) {
+    @Override
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.paintComponents(g);
-   }
+    }
+}
+
+class CanvasClassName extends JLabel {
+    private static int width = 100;
+    private static int height = 20;
+    private int x;
+    private int y;
+
+    public CanvasClassName(String name, int x, int y) {
+        this.setText(name);
+        this.setBorder(LineBorder.createGrayLineBorder());
+        this.x = x;
+        this.y = y;
+        this.setBounds(this.x, this.y, width, height);
+        this.setHorizontalAlignment(SwingConstants.CENTER);
+        this.setVerticalAlignment(SwingConstants.TOP);
+    }
+
+    public void setName(String name) {
+        this.setText(name);
+    }
+
+    public void recalculateGeometry(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.setBounds(this.x, this.y, width, height);
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
 }
