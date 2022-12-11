@@ -14,13 +14,15 @@ public class CanvasClass extends JPanel {
 	private ArrayList<String> attributes;
 	private ArrayList<String> methods;
 	private static Color color = Color.black;
+	private boolean focused;
 	private int x;
 	private int y;
 	public CanvasClass(String name) {
 		this.x = 20;
 		this.y = 20;
-		structure = new CanvasClassFramework(this.x, this.y);
-		labels = new CanvasClassLabels(this.x, this.y, name);
+		this.structure = new CanvasClassFramework(this.x, this.y);
+		this.labels = new CanvasClassLabels(this.x, this.y, name);
+		this.setFocused(true);
 		this.setBorder(BorderFactory.createLineBorder(Color.green, 2));
 		
 		this.add(this.labels);
@@ -67,8 +69,8 @@ public class CanvasClass extends JPanel {
        this.labels.setXY(x,y);
        this.repaint();
    }
-   public void recalculateGeometry() {
-       this.structure.recalculateGeometry();
-       this.labels.recalculateGeometry();
+   public void recalculateGeometry(int x, int y) {
+       this.structure.recalculateGeometry(x, y);
+       this.labels.recalculateGeometry(x, y);
    }
 }

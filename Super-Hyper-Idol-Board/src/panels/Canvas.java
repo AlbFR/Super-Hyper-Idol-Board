@@ -11,10 +11,6 @@ import canvasObjects.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-enum selectedDrawingOption {
-   CREATE_CLASS
-}
-
 public class Canvas extends JPanel implements MouseMotionListener { 
    private ArrayList<CanvasClass> canvasClasses;
    public int focused_class;
