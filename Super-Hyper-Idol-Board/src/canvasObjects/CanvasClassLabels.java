@@ -6,6 +6,7 @@ import java.awt.Point;
 import javax.swing.JLabel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public final class CanvasClassLabels extends JPanel {
@@ -22,7 +23,9 @@ public final class CanvasClassLabels extends JPanel {
        this.name_label = new JLabel();
        this.name_label.setBorder(LineBorder.createGrayLineBorder());
        this.setCanvasClassLabelName(name);
-       this.name_label.setBounds(this.x+5,this.y-40,100,100);
+       this.name_label.setBounds(this.x,this.y,100,100);
+       this.name_label.setHorizontalAlignment(SwingConstants.CENTER);
+       this.name_label.setVerticalAlignment(SwingConstants.TOP);
        this.add(this.name_label);
    }
 
@@ -32,7 +35,7 @@ public final class CanvasClassLabels extends JPanel {
    }
    
    public void recalculateGeometry() {
-       this.name_label.setBounds(this.x+5,this.y-40, 100,100);
+       this.name_label.setBounds(this.x,this.y, 100,100);
    }
    
    public void setCanvasClassLabelName(String name){
