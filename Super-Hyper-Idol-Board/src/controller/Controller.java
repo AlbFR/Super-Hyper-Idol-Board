@@ -28,7 +28,9 @@ public class Controller extends JPanel implements MouseListener {
 		});
 	  
 		menuOptions.editionPanel.change_name_button.addActionListener(event -> {
+			// canvas.getFocusedCanvasClass().printLabelXY();
 			canvas.getFocusedCanvasClass().setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
+			// canvas.getFocusedCanvasClass().printLabelXY();
 			canvas.repaint();
 		});
                 

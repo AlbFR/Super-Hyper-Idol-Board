@@ -2,7 +2,8 @@ package canvasObjects;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Point;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -16,25 +17,33 @@ public final class CanvasClassLabels extends JPanel {
    private int x;
    private int y;
    
-   public CanvasClassLabels(int x, int y, String name) {
-       this.x = x;
-       this.y = y;
-       this.name_label = new CanvasClassName(name, this.x, this.y);
-       this.add(this.name_label);
-   }
+    public CanvasClassLabels(int x, int y, String name) {
+        this.setXY(x, y);
+        this.name_label = new CanvasClassName(name, this.x, this.y);
+        this.setBackground(Color.red);
+        // this.setBorder(BorderFactory.createLineBorder(Color.green, 4));
+        this.setVisible(true);
+        this.add(this.name_label);
+    }
 
     public void setXY(int x, int y) {
-       this.x = x;
-       this.y = y; 
+        this.x = x;
+        this.y = y; 
+    }
+
+    public void printXY() {
+        System.out.println(this.x);
+        System.out.println(this.y);
     }
    
-    public void recalculateGeometry() {
+    public void recalculateGeometry(int x, int y) {
+        this.setXY(x, y);
         this.name_label.recalculateGeometry(this.x, this.y);
     }
    
     public void setCanvasClassLabelName(String name) {
         this.name_label.setName(name);
-        this.recalculateGeometry();
+        // this.recalculateGeometry();
     }
       
     @Override
@@ -51,10 +60,9 @@ class CanvasClassName extends JLabel {
     private int y;
 
     public CanvasClassName(String name, int x, int y) {
-        this.setText(name);
+        this.setName(name);
         this.setBorder(LineBorder.createGrayLineBorder());
-        this.x = x;
-        this.y = y;
+        this.setXY(x, y);
         this.setBounds(this.x, this.y, width, height);
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setVerticalAlignment(SwingConstants.TOP);
@@ -64,9 +72,13 @@ class CanvasClassName extends JLabel {
         this.setText(name);
     }
 
-    public void recalculateGeometry(int x, int y) {
+    public void setXY(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void recalculateGeometry(int x, int y) {
+        this.setXY(x, y);
         this.setBounds(this.x, this.y, width, height);
     }
 
