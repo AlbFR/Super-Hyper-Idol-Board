@@ -41,6 +41,11 @@ public class CanvasClass extends JPanel {
    public boolean clickedOnRectangle(int x, int y) {
       return this.structure.clickedOnRectangle(x, y);
    }
+   
+   public void setCanvasClassName(String name){
+       this.name = name;
+       this.labels.setCanvasClassLabelName(name);
+   }
 
    public void setBoundColor(Color bound_color) {
       this.structure.bound_color = bound_color;

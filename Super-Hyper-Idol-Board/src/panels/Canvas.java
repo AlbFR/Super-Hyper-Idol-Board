@@ -34,7 +34,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
    }   
 
    public void createNewCanvasClass() {
-      canvasClasses.add(new CanvasClass("oh mah gawd"));
+      canvasClasses.add(new CanvasClass("a"));
       this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
       this.setNewFocusedClass(canvasClasses.size()-1);
       this.repaint();
@@ -78,6 +78,10 @@ public class Canvas extends JPanel implements MouseMotionListener {
       for (int i=0;i<canvasClasses.size();++i) {
          canvasClasses.get(i).paintComponent(g);
       }
+   }
+   
+   public CanvasClass getFocusedCanvasClass() {
+       return this.canvasClasses.get(focused_class);
    }
    
     @Override

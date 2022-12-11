@@ -10,9 +10,11 @@ import panels.menuOptions.EditionPanel;
 import panels.menuOptions.LayerChanger;
 
 import enums.SelectedDrawingOption;
+import panels.menuOptions.TextFieldPanel;
 
 public class MenuOptions extends JPanel {
    public EditionPanel editionPanel;
+   public TextFieldPanel textFieldPanel;
    public LayerChanger layerChanger;
    public MenuOptions() {
       super();
@@ -21,8 +23,11 @@ public class MenuOptions extends JPanel {
       this.setLayout(new GridLayout(3, 0));
 
       editionPanel = new EditionPanel();
+      textFieldPanel = new TextFieldPanel();
       layerChanger = new LayerChanger();
+     
       this.add(editionPanel);
+      this.add(textFieldPanel);
       this.add(layerChanger);
    }
 

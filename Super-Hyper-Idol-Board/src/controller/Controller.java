@@ -9,10 +9,12 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import panels.*;
+import canvasObjects.CanvasClass;
 
 public class Controller extends JPanel implements MouseListener {
    private Canvas canvas;
    private MenuOptions menuOptions;
+   private String text; 
    public Controller() {
       canvas = new Canvas(); // View
       menuOptions = new MenuOptions(); // Model
@@ -25,6 +27,12 @@ public class Controller extends JPanel implements MouseListener {
       menuOptions.editionPanel.delete_class_button.addActionListener(event -> {
          canvas.deleteCanvasClass(canvas.focused_class);
          canvas.repaint();
+      });
+      
+      menuOptions.editionPanel.change_name_button.addActionListener(event -> {
+        CanvasClass c = canvas.getFocusedCanvasClass();  
+        c.setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
+        canvas.repaint();
       });
 
       

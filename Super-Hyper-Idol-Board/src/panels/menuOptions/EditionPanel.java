@@ -16,6 +16,7 @@ public class EditionPanel extends JPanel {
    public MenuButton change_name_button;
    public MenuButton add_attribute_button;
    public MenuButton add_method_button;
+   
 
    public EditionPanel() {
       super();
