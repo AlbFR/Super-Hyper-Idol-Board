@@ -31,6 +31,8 @@ public class Controller extends JPanel implements MouseListener {
 			canvas.getFocusedCanvasClass().setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
 			canvas.repaint();
 		});
+                
+                
 
 
 		this.setBackground(Color.CYAN);
