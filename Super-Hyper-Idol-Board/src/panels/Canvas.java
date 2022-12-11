@@ -33,7 +33,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
    }   
 
    public void createNewCanvasClass() {
-      canvasClasses.add(new CanvasClass("a"));
+      canvasClasses.add(new CanvasClass("New Class"));
       this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
       this.setNewFocusedClass(canvasClasses.size()-1);
       this.repaint();
@@ -41,11 +41,11 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
     public void setNewFocusedClass(int new_focus_on) {
         if (focused_class != -1)
-            canvasClasses.get(focused_class).setBoundColor(Color.black);
+            canvasClasses.get(focused_class).setFocused(false);
         focused_class = new_focus_on;
         if (new_focus_on == -1)
             return;
-        canvasClasses.get(new_focus_on).setBoundColor(focused_bound_color);
+        canvasClasses.get(new_focus_on).setFocused(true);
     }
 
     public ArrayList<CanvasClass> getCanvasClasses() {

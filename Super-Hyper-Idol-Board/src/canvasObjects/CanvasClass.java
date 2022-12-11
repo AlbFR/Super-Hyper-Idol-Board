@@ -53,7 +53,7 @@ public class CanvasClass extends JPanel {
 
 
    public void setBoundColor(Color bound_color) {
-      this.structure.bound_color = bound_color;
+    //   this.structure.bound_color = bound_color;
       this.structure.setBoundColor(bound_color);
    }
    
