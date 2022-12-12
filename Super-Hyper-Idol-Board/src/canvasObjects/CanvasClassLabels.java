@@ -26,6 +26,8 @@ public final class CanvasClassLabels extends JPanel {
         this.add(this.name_label);
     }
 
+
+
     public void setXY(int x, int y) {
         this.x = x;
         this.y = y; 
@@ -84,6 +86,18 @@ abstract class CanvasClassTextLabel extends JLabel {
     }
 }
 
+class CanvasClassAttribute extends CanvasClassTextLabel {
+    private static int width = 100;
+    private static int height = 20;
+    private int x;
+    private int y;
+
+    public CanvasClassAttribute(String text, int x, int y) {
+        super(text, x, y);
+        this.setHorizontalAlignment(SwingConstants.LEFT);
+    }
+}
+
 class CanvasClassName extends CanvasClassTextLabel {
     private static int width = 100;
     private static int height = 20;
@@ -92,10 +106,6 @@ class CanvasClassName extends CanvasClassTextLabel {
 
     public CanvasClassName(String text, int x, int y) {
         super(text, x, y);
-        // this.setName(name);
-        // this.setBorder(LineBorder.createGrayLineBorder());
-        // this.setXY(x, y);
-        // this.setBounds(this.x, this.y, width, height);
         this.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
