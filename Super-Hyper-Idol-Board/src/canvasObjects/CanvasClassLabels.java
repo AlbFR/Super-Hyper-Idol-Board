@@ -53,19 +53,50 @@ public final class CanvasClassLabels extends JPanel {
     }
 }
 
-class CanvasClassName extends JLabel {
+abstract class CanvasClassTextLabel extends JLabel {
+    protected static int width = 100;
+    protected static int height;
+    protected int x;
+    protected int y;
+
+    public CanvasClassTextLabel(String text, int x, int y) {
+        this.setValue(text);
+        this.recalculateGeometry(x, y);
+        this.setVerticalAlignment(SwingConstants.CENTER);
+    }
+
+    public void setXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setValue(String value) {
+        this.setText(value);
+    }
+
+    public void recalculateGeometry(int x, int y) {
+        this.setXY(x, y);
+        this.setBounds(this.x, this.y, width, height);
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
+}
+
+class CanvasClassName extends CanvasClassTextLabel {
     private static int width = 100;
     private static int height = 20;
     private int x;
     private int y;
 
-    public CanvasClassName(String name, int x, int y) {
-        this.setName(name);
-        this.setBorder(LineBorder.createGrayLineBorder());
-        this.setXY(x, y);
-        this.setBounds(this.x, this.y, width, height);
+    public CanvasClassName(String text, int x, int y) {
+        super(text, x, y);
+        // this.setName(name);
+        // this.setBorder(LineBorder.createGrayLineBorder());
+        // this.setXY(x, y);
+        // this.setBounds(this.x, this.y, width, height);
         this.setHorizontalAlignment(SwingConstants.CENTER);
-        this.setVerticalAlignment(SwingConstants.TOP);
     }
 
     public void setName(String name) {
