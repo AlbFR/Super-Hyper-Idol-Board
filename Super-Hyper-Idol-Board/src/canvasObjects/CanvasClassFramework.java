@@ -67,7 +67,8 @@ class CanvasClassFramework {
        this.bounds.x = x;
        this.bounds.y = y; 
    }
-   public void recalculateGeometry() {
+   public void recalculateGeometry(int x, int y) {
+      this.setXY(x, y);
       separation_points[0] = new Point(this.bounds.x, this.bounds.y+2*marginy+name_height);
       separation_points[1] = new Point(this.bounds.x+this.bounds.width, this.bounds.y+2*marginy+name_height);
       separation_points[2] = new Point(this.bounds.x, this.bounds.y+attributes_amount*(marginy+attribute_height+1)+name_height+20);

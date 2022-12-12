@@ -53,6 +53,7 @@ public class Controller extends JPanel implements MouseListener {
 				f.addMethod(menuOptions.textFieldPanel.textField.getText());
 				this.canvas.repaint();
 			}
+		});
 
 		menuOptions.layerSwitcherButtons.layer_one.addActionListener(event -> {
 				if(menuOptions.layerSwitcherButtons.getInLayerOne() == true) {
