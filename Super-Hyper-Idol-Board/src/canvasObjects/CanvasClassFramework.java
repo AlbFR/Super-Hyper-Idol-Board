@@ -85,7 +85,7 @@ class CanvasClassFramework {
 			g.setColor(bound_color);
 		}
 		g.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
-		g.setColor(color);
+		g.setColor(bound_color);
 		g.drawLine(separation_points[0].x, separation_points[0].y, separation_points[1].x, separation_points[1].y);
 		g.drawLine(separation_points[2].x, separation_points[2].y, separation_points[3].x, separation_points[3].y);
 	}

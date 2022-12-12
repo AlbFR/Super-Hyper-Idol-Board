@@ -8,8 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import panels.menuOptions.EditionPanel;
-import panels.menuOptions.LayerChanger;
-
+import panels.menuOptions.LayerSwitcherButtons;
 import enums.SelectedDrawingOption;
 import panels.menuOptions.ColorComboBox;
 import panels.menuOptions.TextFieldPanel;
@@ -18,7 +17,7 @@ public class MenuOptions extends JPanel {
    public EditionPanel editionPanel;
    public TextFieldPanel textFieldPanel;
    public ColorComboBox colorComboBox;
-   public LayerChanger layerChanger;
+   public LayerSwitcherButtons layerSwitcherButtons;
    public MenuOptions() {
       super();
 
@@ -28,14 +27,14 @@ public class MenuOptions extends JPanel {
       editionPanel = new EditionPanel();
       textFieldPanel = new TextFieldPanel();
       colorComboBox = new ColorComboBox();
-      layerChanger = new LayerChanger();
+      layerSwitcherButtons = new LayerSwitcherButtons();
       
       // this.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
      
       this.add(editionPanel);
       this.add(textFieldPanel);
       this.add(colorComboBox);
-      this.add(layerChanger);
+      this.add(layerSwitcherButtons);
       }
 
    public SelectedDrawingOption getSelectedOption() {
