@@ -85,6 +85,9 @@ public class Canvas extends JPanel implements MouseMotionListener {
     }
     
     public CanvasClass getFocusedCanvasClass() {
+        if (focused_class == -1) {
+            return null;
+        }
         return this.canvasClasses.get(focused_class);
     }
    

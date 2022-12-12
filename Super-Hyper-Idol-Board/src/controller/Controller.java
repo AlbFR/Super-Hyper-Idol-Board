@@ -8,6 +8,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import canvasObjects.CanvasClass;
 import panels.*;
 
 public class Controller extends JPanel implements MouseListener {
@@ -37,7 +38,14 @@ public class Controller extends JPanel implements MouseListener {
                 //menuOptions.colorComboBox.addActionListener(event -> {
                 //        canvas.getFocusedCanvasClass().setBoundColor(Color.BLACK);
                 //});
-
+		
+		menuOptions.editionPanel.add_attribute_button.addActionListener(event -> {
+			CanvasClass f = this.canvas.getFocusedCanvasClass();
+			if (f != null) {
+				f.addAttribute(menuOptions.textFieldPanel.textField.getText());
+				this.canvas.repaint();
+			}
+		});
 
 		this.setBackground(Color.CYAN);
 		this.setLayout(new BorderLayout());      

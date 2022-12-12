@@ -19,6 +19,8 @@ public class CanvasClass extends JPanel {
 	public CanvasClass(String name) {
 		this.x = 20;
 		this.y = 20;
+		this.attributes = new ArrayList<String>();
+
 		structure = new CanvasClassFramework(this.x, this.y);
 		labels = new CanvasClassLabels(this.x, this.y, name);
 		this.setBorder(BorderFactory.createLineBorder(Color.green, 2));
@@ -28,6 +30,8 @@ public class CanvasClass extends JPanel {
 	public void addAttribute(String attribute) {
 		attributes.add(attribute);
 		structure.addAttribute();
+		this.labels.addAttribute(attribute);
+		// this.add(this.labels.get(this.labels.size()-1));
 	}
 	public void addMethod(String method) {
 		methods.add(method);
