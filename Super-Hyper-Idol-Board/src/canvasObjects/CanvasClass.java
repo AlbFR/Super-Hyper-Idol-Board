@@ -20,6 +20,7 @@ public class CanvasClass extends JPanel {
 		this.x = 20;
 		this.y = 20;
 		this.attributes = new ArrayList<String>();
+		this.methods = new ArrayList<String>();
 
 		structure = new CanvasClassFramework(this.x, this.y);
 		labels = new CanvasClassLabels(this.x, this.y, name);
@@ -36,6 +37,7 @@ public class CanvasClass extends JPanel {
 	public void addMethod(String method) {
 		methods.add(method);
 		structure.addMethod();
+		this.labels.addMethod(method);
 	}
 	
 	public void paintComponent(Graphics g) {

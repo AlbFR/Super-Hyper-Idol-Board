@@ -46,6 +46,13 @@ public class Controller extends JPanel implements MouseListener {
 				this.canvas.repaint();
 			}
 		});
+		menuOptions.editionPanel.add_method_button.addActionListener(event -> {
+			CanvasClass f = this.canvas.getFocusedCanvasClass();
+			if (f != null) {
+				f.addMethod(menuOptions.textFieldPanel.textField.getText());
+				this.canvas.repaint();
+			}
+		});
 
 		this.setBackground(Color.CYAN);
 		this.setLayout(new BorderLayout());      
