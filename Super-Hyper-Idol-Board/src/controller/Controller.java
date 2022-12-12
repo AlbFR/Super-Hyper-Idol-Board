@@ -39,6 +39,23 @@ public class Controller extends JPanel implements MouseListener {
 				canvas.repaint();
 		});
 
+		menuOptions.layerSwitcherButtons.layer_one.addActionListener(event -> {
+				if(menuOptions.layerSwitcherButtons.getInLayerOne() == true) {
+					System.out.println("Already in Layer One.");
+				}else {
+					System.out.println("Switched to Layer One");
+					menuOptions.layerSwitcherButtons.in_layer_one = true;
+				}
+		});
+		
+		menuOptions.layerSwitcherButtons.layer_two.addActionListener(event -> {
+				if(menuOptions.layerSwitcherButtons.getInLayerOne() == false) {
+					System.out.println("Already in Layer Two.");
+				}else {
+					System.out.println("Switched to Layer Two");
+					menuOptions.layerSwitcherButtons.in_layer_one = false;
+				}
+		});
 
 		this.setBackground(Color.CYAN);
 		this.setLayout(new BorderLayout());      
