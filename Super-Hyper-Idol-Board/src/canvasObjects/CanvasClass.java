@@ -14,11 +14,13 @@ public class CanvasClass extends JPanel {
 	private ArrayList<String> attributes;
 	private ArrayList<String> methods;
 	private static Color color = Color.black;
+	private boolean focused;
 	private int x;
 	private int y;
 	public CanvasClass(String name) {
 		this.x = 20;
 		this.y = 20;
+		this.setFocused(true);
 		this.attributes = new ArrayList<String>();
 		this.methods = new ArrayList<String>();
 
@@ -55,25 +57,27 @@ public class CanvasClass extends JPanel {
 		this.labels.setCanvasClassLabelName(name);
 	}
 
-	public void printLabelXY() {
-		this.labels.printXY();
-	}
 
-	public void setBoundColor(Color bound_color) {
-		this.structure.bound_color = bound_color;
-	}
-
-	public void setXY(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.structure.setXY(x,y);
-		this.labels.setXY(x,y);
-		this.repaint();
-	}
-
-	public void recalculateGeometry(int x, int y) {
-		this.setXY(x, y);
-		this.structure.recalculateGeometry();
-		this.labels.recalculateGeometry(x, y);
-	}
+   public void setBoundColor(Color bound_color) {
+    //   this.structure.bound_color = bound_color;
+      this.structure.setBoundColor(bound_color);
+   }
+   
+   public void setFocused(boolean focused){
+      this.focused = focused;
+      this.structure.setFocused(focused);
+   }
+   
+   public void setXY(int x, int y) {
+       this.x = x;
+       this.y = y;
+       this.structure.setXY(x,y);
+       this.labels.setXY(x,y);
+       this.repaint();
+   }
+   public void recalculateGeometry(int x, int y) {
+    //    this.structure.recalculateGeometry(x, y);
+       this.structure.recalculateGeometry();
+       this.labels.recalculateGeometry(x, y);
+   }
 }

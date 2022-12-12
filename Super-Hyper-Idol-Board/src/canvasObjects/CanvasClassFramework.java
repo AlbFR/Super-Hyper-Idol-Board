@@ -5,8 +5,10 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 class CanvasClassFramework {
-   public Color bound_color = Color.black;
-   static Color color = Color.black;
+   public Color bound_color;
+   static Color color;
+   private boolean focused;
+   private static Color focused_color = new Color(50,210,230);
    Rectangle bounds;
    // ArrayList<Point> separation_points;
    Point separation_points[] = new Point[4];
@@ -22,6 +24,10 @@ class CanvasClassFramework {
       attributes_amount = 0;
       methods_amount = 0;
       bounds = new Rectangle(x, y, 100, name_height + 6*marginy);
+      this.bound_color = Color.BLACK;
+      this.color = Color.BLACK;
+      this.setFocused(true);
+      
       separation_points[0] = new Point(this.bounds.x, this.bounds.y+2*marginy+name_height);
       separation_points[1] = new Point(this.bounds.x+this.bounds.width, this.bounds.y+2*marginy+name_height);
       separation_points[2] = new Point(this.bounds.x, this.bounds.y+4*marginy+name_height);
@@ -52,13 +58,10 @@ class CanvasClassFramework {
       return true;
    }
 
-   public void paint(Graphics g) {
-      g.setColor(bound_color);
-      g.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
-      g.setColor(color);
-      g.drawLine(separation_points[0].x, separation_points[0].y, separation_points[1].x, separation_points[1].y);
-      g.drawLine(separation_points[2].x, separation_points[2].y, separation_points[3].x, separation_points[3].y);
-   }
+	public void setBoundColor(Color bound_color) {
+		this.bound_color = bound_color;
+		this.color = bound_color;
+	}
    
    public void setXY(int x, int y) {
        this.bounds.x = x;
@@ -70,4 +73,20 @@ class CanvasClassFramework {
       separation_points[2] = new Point(this.bounds.x, this.bounds.y+attributes_amount*(marginy+attribute_height+1)+name_height+20);
       separation_points[3] = new Point(this.bounds.x+this.bounds.width, this.bounds.y+attributes_amount*(marginy+attribute_height+1)+name_height+20);
    }
+	public void setFocused(boolean focused){
+		this.focused = focused;
+	}
+   
+	public void paint(Graphics g) {
+		if (this.focused) {
+			g.setColor(focused_color);
+		}
+		else {
+			g.setColor(bound_color);
+		}
+		g.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
+		g.setColor(color);
+		g.drawLine(separation_points[0].x, separation_points[0].y, separation_points[1].x, separation_points[1].y);
+		g.drawLine(separation_points[2].x, separation_points[2].y, separation_points[3].x, separation_points[3].y);
+	}
 }

@@ -16,6 +16,7 @@ public class EditionPanel extends JPanel {
    public MenuButton change_name_button;
    public MenuButton add_attribute_button;
    public MenuButton add_method_button;
+   public MenuButton change_color_button;
    
 
    public EditionPanel() {
@@ -25,6 +26,7 @@ public class EditionPanel extends JPanel {
       change_name_button = new MenuButton("Change Name");
       add_attribute_button = new MenuButton("Add Attribute");
       add_method_button = new MenuButton("Add Method");
+      change_color_button = new MenuButton("Change Color");
 
       this.setLayout(new GridLayout(3, 2));
       this.setBackground(new Color(50, 205, 232));
@@ -33,6 +35,7 @@ public class EditionPanel extends JPanel {
       this.add(change_name_button);
       this.add(add_attribute_button);
       this.add(add_method_button);
+      this.add(change_color_button);
    }
 
    public SelectedDrawingOption getSelectedOption() {
