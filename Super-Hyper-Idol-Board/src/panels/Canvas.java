@@ -52,13 +52,13 @@ public class Canvas extends JPanel implements MouseMotionListener {
         return this.canvasClasses;
     }
 
-    public int clickedOnAnyClass(int x, int y) {
-        for (int i=0;i<canvasClasses.size();++i) {
-            if (canvasClasses.get(i).clickedOnRectangle(x, y))
-                return i;
-        }
-        return -1;
-    }
+    // public int clickedOnAnyClass(int x, int y) {
+    //     for (int i=0;i<canvasClasses.size();++i) {
+    //         if (canvasClasses.get(i).clickedOnRectangle(x, y))
+    //             return i;
+    //     }
+    //     return -1;
+    // }
 
     public boolean deleteCanvasClass(int k) {
         if (k < 0 || canvasClasses.size() <= k)

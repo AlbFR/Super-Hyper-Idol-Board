@@ -17,6 +17,7 @@ public class Controller extends JPanel implements MouseListener {
 	public Controller() {
 		canvas = new Canvas(); // View
 		menuOptions = new MenuOptions(); // Model
+		this.setFocusable(false);
 	  
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
 			canvas.createNewCanvasClass();
@@ -36,7 +37,7 @@ public class Controller extends JPanel implements MouseListener {
 		});
                 
 		menuOptions.editionPanel.change_color_button.addActionListener(event -> {
-				canvas.getFocusedCanvasClass().setBoundColor(menuOptions.colorComboBox.getColor());
+				canvas.getFocusedCanvasClass().setBorderColor(menuOptions.colorComboBox.getColor());
 				canvas.repaint();
 		});
 		
@@ -99,16 +100,16 @@ public class Controller extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
-		this.repaint();
-		this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
-		this.repaint();
+		// setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
+		// this.repaint();
+		// this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
+		// this.repaint();
 	}
 	@Override
 	public void mousePressed(MouseEvent me) {
-		setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
-		this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
-		this.repaint();
+		// setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
+		// this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
+		// this.repaint();
 	}
 	@Override
 	public void mouseReleased(MouseEvent me) {}
