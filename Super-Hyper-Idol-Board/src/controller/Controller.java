@@ -3,6 +3,7 @@ package controller;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -14,10 +15,13 @@ import panels.*;
 public class Controller extends JPanel implements MouseListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
+	private CanvasClass currentFocusedCanvasClass;
+	private int name_meth_attr_flag;
+
 	public Controller() {
 		canvas = new Canvas(); // View
 		menuOptions = new MenuOptions(); // Model
-	  
+
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
 			canvas.createNewCanvasClass();
 			canvas.repaint();
@@ -27,49 +31,64 @@ public class Controller extends JPanel implements MouseListener {
 			canvas.deleteCanvasClass(canvas.focused_class);
 			canvas.repaint();
 		});
-	  
+
 		menuOptions.editionPanel.change_name_button.addActionListener(event -> {
-			// canvas.getFocusedCanvasClass().printLabelXY();
-			canvas.getFocusedCanvasClass().setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
-			// canvas.getFocusedCanvasClass().printLabelXY();
+			name_meth_attr_flag = 1;
+			menuOptions.textFieldPanel.setVisible(true);
+			menuOptions.repaint();
+			currentFocusedCanvasClass = this.canvas.getFocusedCanvasClass();
+		});
+
+		menuOptions.editionPanel.change_color_button.addActionListener(event -> {
+			canvas.getFocusedCanvasClass().setBoundColor(menuOptions.colorComboBox.getColor());
 			canvas.repaint();
 		});
-                
-		menuOptions.editionPanel.change_color_button.addActionListener(event -> {
-				canvas.getFocusedCanvasClass().setBoundColor(menuOptions.colorComboBox.getColor());
-				canvas.repaint();
-		});
-		
+
 		menuOptions.editionPanel.add_attribute_button.addActionListener(event -> {
-			CanvasClass f = this.canvas.getFocusedCanvasClass();
-			if (f != null) {
-				f.addAttribute(menuOptions.textFieldPanel.textField.getText());
-				this.canvas.repaint();
-			}
-		});
+			name_meth_attr_flag = 2;
+			menuOptions.textFieldPanel.setVisible(true);
+			menuOptions.repaint();
+			currentFocusedCanvasClass = this.canvas.getFocusedCanvasClass();
+			});
 		menuOptions.editionPanel.add_method_button.addActionListener(event -> {
-			CanvasClass f = this.canvas.getFocusedCanvasClass();
-			if (f != null) {
-				f.addMethod(menuOptions.textFieldPanel.textField.getText());
-				this.canvas.repaint();
+			name_meth_attr_flag = 3;
+			menuOptions.textFieldPanel.setVisible(true);
+			menuOptions.repaint();
+			currentFocusedCanvasClass = this.canvas.getFocusedCanvasClass();
+			});
+
+		menuOptions.textFieldPanel.textField.addActionListener(event -> {
+			if (currentFocusedCanvasClass != null) {
+				if (name_meth_attr_flag == 1) {
+						currentFocusedCanvasClass.setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
+						this.canvas.repaint();
+				}
+				if (name_meth_attr_flag == 2) {
+						currentFocusedCanvasClass.addAttribute(menuOptions.textFieldPanel.textField.getText());
+						this.canvas.repaint();
+				}
+				if (name_meth_attr_flag == 3) {
+						currentFocusedCanvasClass.addMethod(menuOptions.textFieldPanel.textField.getText());
+						this.canvas.repaint();
+				}
+				menuOptions.textFieldPanel.textField.setText("");
+				menuOptions.textFieldPanel.setVisible(false);
 			}
 		});
 
 		menuOptions.layerSwitcherButtons.layer_one.addActionListener(event -> {
 			if (menuOptions.layerSwitcherButtons.getInLayerOne() == true) {
 				System.out.println("Already in Layer One.");
-			}
-			else {
+			} else {
 				System.out.println("Switched to Layer One");
 				menuOptions.layerSwitcherButtons.in_layer_one = true;
 			}
 		});
-		
+
 		menuOptions.layerSwitcherButtons.layer_two.addActionListener(event -> {
 			if (menuOptions.layerSwitcherButtons.getInLayerOne() == false) {
 				System.out.println("Already in Layer Two.");
-			}
-			else {
+			} else {
 				System.out.println("Switched to Layer Two");
 				menuOptions.layerSwitcherButtons.in_layer_one = false;
 			}
@@ -80,7 +99,7 @@ public class Controller extends JPanel implements MouseListener {
 		});
 
 		this.setBackground(Color.CYAN);
-		this.setLayout(new BorderLayout());      
+		this.setLayout(new BorderLayout());
 		this.add(menuOptions, BorderLayout.WEST);
 		this.add(canvas, BorderLayout.CENTER);
 		this.addMouseListener(this);
@@ -104,16 +123,23 @@ public class Controller extends JPanel implements MouseListener {
 		this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
 		this.repaint();
 	}
+
 	@Override
 	public void mousePressed(MouseEvent me) {
 		setNewFocusedClass(canvas.clickedOnAnyClass(me.getX(), me.getY()));
 		this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
 		this.repaint();
 	}
+
 	@Override
-	public void mouseReleased(MouseEvent me) {}
+	public void mouseReleased(MouseEvent me) {
+	}
+
 	@Override
-	public void mouseEntered(MouseEvent me) {}
+	public void mouseEntered(MouseEvent me) {
+	}
+
 	@Override
-	public void mouseExited(MouseEvent me) {}
+	public void mouseExited(MouseEvent me) {
+	}
 }
