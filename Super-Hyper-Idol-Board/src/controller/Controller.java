@@ -15,7 +15,6 @@ import panels.*;
 public class Controller extends JPanel implements MouseListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
-	private CanvasClass currentFocusedCanvasClass;
 	private int name_meth_attr_flag;
 
 	public Controller() {
@@ -33,45 +32,60 @@ public class Controller extends JPanel implements MouseListener {
 		});
 
 		menuOptions.editionPanel.change_name_button.addActionListener(event -> {
-			name_meth_attr_flag = 1;
-			menuOptions.textFieldPanel.setVisible(true);
-			menuOptions.repaint();
-			currentFocusedCanvasClass = this.canvas.getFocusedCanvasClass();
+			if(this.canvas.getFocusedCanvasClass() != null){
+				name_meth_attr_flag = 1;
+				menuOptions.textFieldPanel.setVisible(true);
+				menuOptions.textFieldPanel.textField.setText("Press Enter to submit name...");
+				menuOptions.repaint();
+			}
 		});
 
 		menuOptions.editionPanel.change_color_button.addActionListener(event -> {
-			canvas.getFocusedCanvasClass().setBoundColor(menuOptions.colorComboBox.getColor());
-			canvas.repaint();
+			if(this.canvas.getFocusedCanvasClass() != null){
+				menuOptions.colorComboBox.setVisible(true);
+				menuOptions.repaint();
+			}
+		});
+
+		menuOptions.colorComboBox.button.addActionListener(event -> {
+			if(this.canvas.getFocusedCanvasClass() != null){
+				canvas.getFocusedCanvasClass().setBoundColor(menuOptions.colorComboBox.getColor());
+				canvas.repaint();
+				menuOptions.colorComboBox.setVisible(false);
+				menuOptions.repaint();
+			}
 		});
 
 		menuOptions.editionPanel.add_attribute_button.addActionListener(event -> {
-			name_meth_attr_flag = 2;
-			menuOptions.textFieldPanel.setVisible(true);
-			menuOptions.repaint();
-			currentFocusedCanvasClass = this.canvas.getFocusedCanvasClass();
-			});
+			if(this.canvas.getFocusedCanvasClass() != null){
+				name_meth_attr_flag = 2;
+				menuOptions.textFieldPanel.setVisible(true);
+				menuOptions.repaint();
+			}
+		});
+
 		menuOptions.editionPanel.add_method_button.addActionListener(event -> {
-			name_meth_attr_flag = 3;
-			menuOptions.textFieldPanel.setVisible(true);
-			menuOptions.repaint();
-			currentFocusedCanvasClass = this.canvas.getFocusedCanvasClass();
-			});
+			if(this.canvas.getFocusedCanvasClass() != null){
+				name_meth_attr_flag = 3;
+				menuOptions.textFieldPanel.setVisible(true);
+				menuOptions.repaint();
+			}
+		});
 
 		menuOptions.textFieldPanel.textField.addActionListener(event -> {
-			if (currentFocusedCanvasClass != null) {
+			if (this.canvas.getFocusedCanvasClass() != null) {
 				if (name_meth_attr_flag == 1) {
-						currentFocusedCanvasClass.setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
+						this.canvas.getFocusedCanvasClass().setCanvasClassName(menuOptions.textFieldPanel.textField.getText());
 						this.canvas.repaint();
 				}
 				if (name_meth_attr_flag == 2) {
-						currentFocusedCanvasClass.addAttribute(menuOptions.textFieldPanel.textField.getText());
+						this.canvas.getFocusedCanvasClass().addAttribute(menuOptions.textFieldPanel.textField.getText());
 						this.canvas.repaint();
 				}
 				if (name_meth_attr_flag == 3) {
-						currentFocusedCanvasClass.addMethod(menuOptions.textFieldPanel.textField.getText());
+						this.canvas.getFocusedCanvasClass().addMethod(menuOptions.textFieldPanel.textField.getText());
 						this.canvas.repaint();
 				}
-				menuOptions.textFieldPanel.textField.setText("");
 				menuOptions.textFieldPanel.setVisible(false);
 			}
 		});
@@ -83,6 +97,10 @@ public class Controller extends JPanel implements MouseListener {
 				System.out.println("Switched to Layer One");
 				menuOptions.layerSwitcherButtons.in_layer_one = true;
 			}
+		});
+
+		menuOptions.layerSwitcherButtons.save.addActionListener(event -> {
+			System.out.println("Progress saved.");
 		});
 
 		menuOptions.layerSwitcherButtons.layer_two.addActionListener(event -> {
