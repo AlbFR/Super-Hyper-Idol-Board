@@ -1,15 +1,14 @@
 package panels;
 
-import java.awt.Graphics;
 import java.awt.Color;
-import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-
-import canvasObjects.*;
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import canvasObjects.CanvasClass;
 
 public class Canvas extends JPanel implements MouseMotionListener { 
    private ArrayList<CanvasClass> canvasClasses;
@@ -28,12 +27,10 @@ public class Canvas extends JPanel implements MouseMotionListener {
       // this.setSize(160, 500);
       this.addMouseMotionListener(this);
       canvasClasses = new ArrayList<CanvasClass>();
-
-      // this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.green));
    }   
 
    public void createNewCanvasClass() {
-      canvasClasses.add(new CanvasClass("New Class"));
+      this.canvasClasses.add(new CanvasClass("New Class"));
       this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
       this.setNewFocusedClass(canvasClasses.size()-1);
       this.repaint();
@@ -71,6 +68,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
         return true;
     }
 
+    public void eraseAll(){
+        for(int i=this.canvasClasses.size(); i>=0; i--){
+            this.deleteCanvasClass(i);
+        }
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -95,7 +98,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
             this.repaint();
         }
     }
-    
+
     @Override
     public void mouseMoved(MouseEvent me) {}
 }

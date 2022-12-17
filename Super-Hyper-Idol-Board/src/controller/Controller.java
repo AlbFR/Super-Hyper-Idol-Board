@@ -9,6 +9,8 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import org.w3c.dom.events.Event;
+
 import canvasObjects.CanvasClass;
 import panels.*;
 
@@ -110,6 +112,11 @@ public class Controller extends JPanel implements MouseListener {
 				System.out.println("Switched to Layer Two");
 				menuOptions.layerSwitcherButtons.in_layer_one = false;
 			}
+		});
+
+		menuOptions.editionPanel.erase_all.addActionListener(event -> {
+			this.canvas.eraseAll();
+			this.canvas.repaint();
 		});
 
 		menuOptions.editionPanel.draw_line_button.addActionListener(event -> {
