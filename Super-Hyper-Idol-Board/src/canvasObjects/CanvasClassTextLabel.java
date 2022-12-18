@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public abstract class CanvasClassTextLabel extends JLabel {
-    protected static int width = 100;
+    protected static int width;
     protected static int height;
     protected int x;
     protected int y;

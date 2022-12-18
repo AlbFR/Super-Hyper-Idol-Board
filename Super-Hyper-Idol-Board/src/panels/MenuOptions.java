@@ -35,7 +35,9 @@ public class MenuOptions extends JPanel {
       this.add(textFieldPanel);
       this.add(colorComboBox);
       this.add(layerSwitcherButtons);
-      }
+   }
+
+   
 
    public SelectedDrawingOption getSelectedOption() {
       return editionPanel.getSelectedOption();

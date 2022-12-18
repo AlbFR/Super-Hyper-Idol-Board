@@ -77,7 +77,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // this.paintComponents(g);
         for (int i=0;i<canvasClasses.size();++i) {
             canvasClasses.get(i).paintComponent(g);
         }
