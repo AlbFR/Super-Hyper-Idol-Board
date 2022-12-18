@@ -6,21 +6,27 @@ import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import java.awt.GridLayout;
 
 public class ColorComboBox extends JPanel implements ActionListener {
     public JComboBox cmb;
+    public JButton button;
     public Color color;
     public String aux;
     
     public ColorComboBox() {
         String [] colorOptions = {"Black" , "Red" , "Green" , "Blue"};
         cmb = new JComboBox(colorOptions);
+        button = new JButton("Ok");
         cmb.setPreferredSize(new Dimension(250,40)); 
         cmb.setSelectedIndex(0);
         cmb.addActionListener(this);
+        this.setLayout(new GridLayout(0,2));
         
         this.add(cmb);
-        this.setVisible(true);
+        this.add(button);
+        this.setVisible(false);
     }
     
     public void actionPerformed(ActionEvent e) {

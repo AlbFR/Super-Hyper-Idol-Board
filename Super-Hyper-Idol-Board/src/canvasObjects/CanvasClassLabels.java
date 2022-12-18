@@ -22,7 +22,7 @@ public class CanvasClassLabels extends JPanel {
         this.methods_label = new ArrayList<CanvasClassMethod>();
         
         this.setXY(x, y);
-        this.name_label = new CanvasClassName(name, this.x, this.y);
+        this.name_label = new CanvasClassName(name, x, y);
         this.setBackground(Color.red);
         this.setVisible(true);
         this.add(this.name_label);
@@ -64,13 +64,13 @@ public class CanvasClassLabels extends JPanel {
       
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        super.paintComponents(g);
         this.paintComponents(g);
         // for (int i=0;i<this.attributes_label.size();++i) {
         //     this.attributes_label.get(i).paintComponent(g);
         // }
         for (int i=0;i<this.methods_label.size();++i) {
-            this.methods_label.get(i).paintComponent(g);
+            this.methods_label.get(i).paintComponents(g);
         }
     }
 }
