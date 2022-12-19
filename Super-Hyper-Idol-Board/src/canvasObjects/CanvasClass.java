@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -36,7 +37,7 @@ public class CanvasClass extends JPanel implements MouseListener {
 
 	public CanvasClass(String name) {
 		this.setBounds(20, 20, WIDTH, height);
-		this.setLayout(null);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setFocusable(true);
 
 		this.nameLabel = new CanvasClassName(name, this.getBounds().x, this.getBounds().y);
@@ -53,9 +54,9 @@ public class CanvasClass extends JPanel implements MouseListener {
 		this.setBackground(Color.WHITE);
 		
 		// this.add(this.labels);
+		this.add(this.nameLabel);
 		this.add(this.attributesPanel);
 		this.add(this.methodsPanel);
-		this.add(this.nameLabel);
 	}
 	public void addAttribute(String attribute) {
 		this.attributesPanel.addLabel(attribute);
