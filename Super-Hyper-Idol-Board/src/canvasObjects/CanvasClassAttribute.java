@@ -1,6 +1,7 @@
 package canvasObjects;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -18,17 +19,11 @@ public class CanvasClassAttribute extends CanvasClassTextLabel {
         this.setBorder(new EmptyBorder(0, marginx, 0, marginx));
     }
 
-    // public void setXY(int x, int y) {
-    //     this.setBounds(x, y, WIDTH, HEIGHT);
-    //     // this.x = x + marginx;
-    //     // this.y = y;
-    // }
-
     public void recalculateGeometry(int x, int y) {
         this.setBounds(x, y, WIDTH, HEIGHT);
     }
 
-    // public void paintComponent(Graphics g) {
-    //     super.paintComponent(g);
-    // }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
 }

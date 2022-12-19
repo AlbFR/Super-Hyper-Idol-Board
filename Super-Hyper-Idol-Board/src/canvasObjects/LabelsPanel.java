@@ -10,11 +10,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 // import javax.swing.JLabel;
 
-public class AttributesPanel extends JPanel {
+public class LabelsPanel extends JPanel {
 	private ArrayList<CanvasClassAttribute> labels;
 	private static final int WIDTH = 100;
 
-	public AttributesPanel(int x, int y) {
+	public LabelsPanel(int x, int y) {
 		labels = new ArrayList<CanvasClassAttribute>();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBounds(x, y, WIDTH, 10);
@@ -22,8 +22,9 @@ public class AttributesPanel extends JPanel {
 		this.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 	}
 
-	public void addAttribute(String attribute) {
-		this.labels.add(new CanvasClassAttribute(attribute, this.getBounds().x, this.getBounds().y + this.labels.size()*CanvasClassAttribute.HEIGHT));
+	public void addLabel(String attribute) {
+		int height = this.getBounds().y + this.labels.size()*CanvasClassAttribute.HEIGHT;
+		this.labels.add(new CanvasClassAttribute(attribute, this.getBounds().x, height));
 		// this.setSize(WIDTH, this.labels.size() * CanvasClassAttribute.HEIGHT);
 		this.setHeight(CanvasClassAttribute.HEIGHT * this.labels.size());
 		this.add(this.labels.get(this.labels.size()-1));
@@ -35,8 +36,8 @@ public class AttributesPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		for (int i=0;i<this.labels.size();++i) {
-			this.labels.get(i).paintComponent(g);
-		}
+		// for (int i=0;i<this.labels.size();++i) {
+		// 	this.labels.get(i).paintComponent(g);
+		// }
 	}
 }

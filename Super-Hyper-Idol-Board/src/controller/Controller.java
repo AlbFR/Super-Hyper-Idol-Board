@@ -9,9 +9,6 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import org.w3c.dom.events.Event;
-
-import canvasObjects.CanvasClass;
 import panels.*;
 
 public class Controller extends JPanel implements MouseListener {
@@ -134,8 +131,8 @@ public class Controller extends JPanel implements MouseListener {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		menuOptions.paintComponent(g);
-		canvas.paintComponent(g);
+		// menuOptions.paintComponent(g);
+		// canvas.paintComponent(g);
 	}
 
 	public void setNewFocusedClass(int new_focus) {
