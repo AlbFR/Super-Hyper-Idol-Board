@@ -7,27 +7,36 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 
 import canvasObjects.CanvasClass;
+import canvasObjects.Curves;
+import canvasObjects.PaintBrush;
 
 public class Canvas extends JPanel implements MouseMotionListener { 
    private ArrayList<CanvasClass> canvasClasses;
    public int focused_class;
    public int moving_class;
    private Color focused_bound_color;
+   public PaintBrush paintBrush;
+   private Curves lines;
    
    public Canvas() {
-      super();
-      
-      focused_class = -1; // There's no focused class at the beginning
-      moving_class = -1;
-      focused_bound_color = new Color(50, 205, 231);
-      this.setLayout(null);
-      this.setBackground(Color.white);
-      // this.setSize(160, 500);
-      this.addMouseMotionListener(this);
-      canvasClasses = new ArrayList<CanvasClass>();
-   }   
+        super();
+        
+        focused_class = -1; // There's no focused class at the beginning
+        moving_class = -1;
+        focused_bound_color = new Color(50, 205, 231);
+        paintBrush = new PaintBrush();
+        lines = new Curves();
+        this.setLayout(new OverlayLayout(this));
+        this.setBackground(Color.white);
+        // this.setSize(160, 500);
+        this.addMouseMotionListener(this);
+        canvasClasses = new ArrayList<CanvasClass>();
+        this.add(this.lines);
+        this.add(this.paintBrush); 
+    }   
 
    public void createNewCanvasClass() {
       this.canvasClasses.add(new CanvasClass("New Class"));
@@ -77,6 +86,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        this.paintBrush.paintComponent(g);
         for (int i=0;i<canvasClasses.size();++i) {
             canvasClasses.get(i).paintComponent(g);
         }

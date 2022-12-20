@@ -9,7 +9,7 @@ public class Window extends JFrame {
       super();
       this.setSize(1100, 700);
       this.setLayout(new BorderLayout(160, 40));
-      this.setTitle("Idol Board");
+      this.setTitle("Super Idol Board");
       this.setFocusable(false);
 
       this.add(new controller.Controller());
