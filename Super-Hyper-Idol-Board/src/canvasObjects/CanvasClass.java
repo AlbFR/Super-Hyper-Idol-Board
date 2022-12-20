@@ -68,7 +68,6 @@ public class CanvasClass extends JPanel implements MouseListener {
 		// this.labels.addMethod(method);
 	}
 	
-
 	// public boolean clickedOnRectangle(int x, int y) {
 	// 	return this.structure.clickedOnRectangle(x, y);
 	// }
@@ -81,7 +80,6 @@ public class CanvasClass extends JPanel implements MouseListener {
 	public void setBorderColor(Color color) {
 		this.border_color = color;
 	}
-
 
 	public void setFocused(boolean focused){
 		if (focused) {
@@ -113,8 +111,8 @@ public class CanvasClass extends JPanel implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		// this.setFocused(true);
-		// this.requestFocus();
+		//this.setFocused(true);
+		//this.requestFocus();
 	}
 	@Override
 	public void mouseEntered(MouseEvent event) {}
