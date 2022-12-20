@@ -3,6 +3,7 @@ package canvasObjects;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
@@ -25,10 +26,10 @@ public class CanvasClass extends JPanel implements MouseListener {
 
 	// private ArrayList<String> methods;
 	private Color border_color = Color.black;
-	private final static int WIDTH = 100;
+	public final static int WIDTH = 100;
 	private boolean focused;
 	private int BASE_HEIGHT_COMPONENT = 5;
-	private int height = BASE_HEIGHT_COMPONENT * 2 + NAME_HEIGHT;
+	private int height = NAME_HEIGHT;
 
 	public static final int NAME_HEIGHT = 20;
 	public static final int ATTRIBUTE_HEIGHT = 15;
@@ -55,7 +56,10 @@ public class CanvasClass extends JPanel implements MouseListener {
 		
 		// this.add(this.labels);
 		this.add(this.nameLabel);
+		this.attributesPanel.setMinimumSize(new Dimension(CanvasClass.WIDTH, 5));
+		this.attributesPanel.setPreferredSize(new Dimension(CanvasClass.WIDTH, 5));
 		this.add(this.attributesPanel);
+		this.methodsPanel.setMinimumSize(new Dimension(CanvasClass.WIDTH, 5));
 		this.add(this.methodsPanel);
 	}
 	public void addAttribute(String attribute) {
@@ -105,10 +109,6 @@ public class CanvasClass extends JPanel implements MouseListener {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		System.out.print("Canvas Class component count: ");
-		System.out.println(this.getComponentCount());
-		// this.nameLabel.paintComponent(g);
-		// this.attributesPanel.paintComponent(g);
 	}
 	
 	@Override

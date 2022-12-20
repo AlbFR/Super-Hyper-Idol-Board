@@ -69,7 +69,8 @@ public class Canvas extends JPanel implements MouseMotionListener {
     }
 
     public void eraseAll(){
-        for(int i=this.canvasClasses.size(); i>=0; i--){
+        for(int i=this.canvasClasses.size()-1; i>=0; i--){
+            this.remove(this.canvasClasses.get(i));
             this.deleteCanvasClass(i);
         }
     }
@@ -80,8 +81,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
         // for (int i=0;i<canvasClasses.size();++i) {
         //     canvasClasses.get(i).paintComponent(g);
         // }
-        System.out.print("Canvas Component Count: ");
-        System.out.println(this.getComponentCount());
     }
     
     public CanvasClass getFocusedCanvasClass() {
