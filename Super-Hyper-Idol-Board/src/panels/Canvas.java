@@ -11,30 +11,29 @@ import javax.swing.JPanel;
 import canvasObjects.CanvasClass;
 
 public class Canvas extends JPanel implements MouseMotionListener { 
-   private ArrayList<CanvasClass> canvasClasses;
-   public int focused_class;
-   public int moving_class;
-   private Color focused_bound_color;
-   
-   public Canvas() {
-      super();
-      
-      focused_class = -1; // There's no focused class at the beginning
-      moving_class = -1;
-      focused_bound_color = new Color(50, 205, 231);
-      this.setLayout(null);
-      this.setBackground(Color.white);
-      // this.setSize(160, 500);
-      this.addMouseMotionListener(this);
-      canvasClasses = new ArrayList<CanvasClass>();
-   }   
+    private ArrayList<CanvasClass> canvasClasses;
+    public int focused_class;
+    public int moving_class;
+    private Color focused_bound_color;
+    
+    public Canvas() {
+        super();
+        
+        focused_class = -1; // There's no focused class at the beginning
+        moving_class = -1;
+        focused_bound_color = new Color(50, 205, 231);
+        this.setLayout(null);
+        this.setBackground(Color.white);
+        this.addMouseMotionListener(this);
+        canvasClasses = new ArrayList<CanvasClass>();
+    }   
 
-   public void createNewCanvasClass() {
-      this.canvasClasses.add(new CanvasClass("New Class"));
-      this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
-      this.setNewFocusedClass(canvasClasses.size()-1);
-      this.repaint();
-   }
+    public void createNewCanvasClass() {
+        this.canvasClasses.add(new CanvasClass("New Class"));
+        this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
+        this.setNewFocusedClass(canvasClasses.size()-1);
+        this.repaint();
+    }
 
     public void setNewFocusedClass(int new_focus_on) {
         if (focused_class != -1)
