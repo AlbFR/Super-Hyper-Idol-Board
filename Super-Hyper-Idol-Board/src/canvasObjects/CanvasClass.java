@@ -1,11 +1,12 @@
 package canvasObjects;
 
-import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -14,8 +15,8 @@ import javax.swing.border.Border;
 
 // import org.w3c.dom.events.MouseEvent;
 
-public class CanvasClass extends JPanel implements MouseListener {
-	private static final Color focused_color = new Color(50, 230, 215);
+public class CanvasClass extends JPanel implements MouseListener, FocusListener {
+	private static final Color focused_color = new Color(50, 205, 231);
 	private static final Border focused_border = BorderFactory.createLineBorder(focused_color, 1);
 	// private CanvasClassFramework structure;
 	// private CanvasClassLabels labels;
@@ -40,57 +41,40 @@ public class CanvasClass extends JPanel implements MouseListener {
 		this.setBounds(20, 20, WIDTH, height);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setFocusable(true);
+		this.addFocusListener(this);
 
 		this.nameLabel = new CanvasClassName(name, this.getBounds().x, this.getBounds().y);
 		this.attributesPanel = new LabelsPanel(0, CanvasClassName.HEIGHT);
 		this.methodsPanel = new LabelsPanel(0, CanvasClassName.HEIGHT);
 
-		// this.methods = new ArrayList<String>();
 
-		// this.structure = new CanvasClassFramework(this.getBounds().x, this.getBounds().y);
-		// this.labels = new CanvasClassLabels(this.getBounds().x, this.getBounds().y, name);
 		this.setFocused(true);
-		this.border_color = Color.BLACK;
+		this.setBorderColor(Color.BLACK);
 		this.setBorder(BorderFactory.createLineBorder(this.border_color, 2));
 		this.setBackground(Color.WHITE);
 		
-		// this.add(this.labels);
 		this.add(this.nameLabel);
-		this.attributesPanel.setMinimumSize(new Dimension(CanvasClass.WIDTH, 5));
-		this.attributesPanel.setPreferredSize(new Dimension(CanvasClass.WIDTH, 5));
 		this.add(this.attributesPanel);
-		this.methodsPanel.setMinimumSize(new Dimension(CanvasClass.WIDTH, 5));
 		this.add(this.methodsPanel);
+		System.out.println("The rectangle is " + this.getVisibleRect());
+		System.out.println("The bounds are " + this.getBounds());
 	}
 	public void addAttribute(String attribute) {
 		this.attributesPanel.addLabel(attribute);
 		this.setSize(WIDTH, this.getBounds().height + CanvasClassAttribute.HEIGHT);
-		// attributes.add(attribute);
-		// structure.addAttribute();
-		// this.labels.addAttribute(attribute);
-		// this.add(this.labels.get(this.labels.size()-1));
 	}
 	public void addMethod(String method) {
 		this.methodsPanel.addLabel(method);
 		this.setSize(WIDTH, this.getBounds().height + CanvasClassAttribute.HEIGHT);
-		// methods.add(method);
-		// structure.addMethod();
-		// this.labels.addMethod(method);
 	}
 
-	// public boolean clickedOnRectangle(int x, int y) {
-	// 	return this.structure.clickedOnRectangle(x, y);
-	// }
-	
 	public void setCanvasClassName(String name){
 		this.nameLabel.setText(name);
-		// this.labels.setCanvasClassLabelName(name);
 	}
 
 	public void setBorderColor(Color color) {
 		this.border_color = color;
 	}
-
 
 	public void setFocused(boolean focused){
 		if (focused) {
@@ -102,6 +86,14 @@ public class CanvasClass extends JPanel implements MouseListener {
 		this.focused = focused;
 		// this.structure.setFocused(focused);
 	}
+
+	public boolean clickedOnRectangle(int x, int y) {
+		if (x < this.getBounds().x || this.getBounds().x+this.getBounds().width < x)
+			return false;
+		if (y < this.getBounds().y || this.getBounds().y+this.getBounds().height < y)
+			return false;
+		return true;
+	}
 	
 	public void recalculateGeometry(int x, int y) {
 		this.setBounds(x, y, WIDTH, this.getBounds().height);
@@ -112,13 +104,30 @@ public class CanvasClass extends JPanel implements MouseListener {
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent event) {}
+	public void mouseClicked(MouseEvent event) {
+		this.focusGained(null);
+		System.out.println("Clickeaste esta caga de canvasClass");
+	}
 	@Override
 	public void mouseEntered(MouseEvent event) {}
 	@Override
 	public void mouseExited(MouseEvent event) {}
 	@Override
-	public void mousePressed(MouseEvent event) {}
+	public void mousePressed(MouseEvent event) {
+		this.focusGained(null);
+	}
 	@Override
 	public void mouseReleased(MouseEvent event) {}
+	@Override
+	public void focusGained(FocusEvent event) {
+		// this.setBorderColor(focused_color);	
+		this.setFocused(true);
+		System.out.println("Something has been focused");
+	}
+	@Override
+	public void focusLost(FocusEvent event) {
+		// this.setBorderColor(this.border_color);
+		this.setFocused(false);
+		System.out.println("Something has lost its focus");
+	}
 }

@@ -121,7 +121,6 @@ public class Controller extends JPanel implements MouseListener {
 
 		});
 
-		this.setBackground(Color.CYAN);
 		this.setLayout(new BorderLayout());
 		this.add(menuOptions, BorderLayout.WEST);
 		this.add(canvas, BorderLayout.CENTER);
