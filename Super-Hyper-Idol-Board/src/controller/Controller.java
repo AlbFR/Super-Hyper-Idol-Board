@@ -3,6 +3,9 @@ package controller;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,12 +14,16 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+//import canvasObjects.PaintBrush;
+import canvasObjects.PaintBrush;
 import panels.*;
 
-public class Controller extends JPanel implements MouseListener {
+public class Controller extends JPanel implements MouseListener, MouseMotionListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
+	private PaintBrush paintBrush;
 	private int name_meth_attr_flag;
+	private boolean paint_brush_on = false;
 
 	public Controller() {
 		this.canvas = new Canvas(); // View
@@ -30,6 +37,7 @@ public class Controller extends JPanel implements MouseListener {
 			this.canvas = new Canvas(); // View
 		}
 		this.menuOptions = new MenuOptions(); // Model
+		this.paintBrush = new PaintBrush();
 		this.setFocusable(false);
 	  
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
@@ -133,6 +141,7 @@ public class Controller extends JPanel implements MouseListener {
 
 		menuOptions.editionPanel.erase_all.addActionListener(event -> {
 			this.canvas.eraseAll();
+			this.paintBrush.eraseAll();
 			this.canvas.repaint();
 		});
 
@@ -140,10 +149,23 @@ public class Controller extends JPanel implements MouseListener {
 
 		});
 
+		menuOptions.editionPanel.free_draw.addActionListener(event -> {
+			if(paint_brush_on){
+				paint_brush_on = false;
+				this.menuOptions.editionPanel.free_draw.setText("Free Draw: Off");
+			}else {
+				paint_brush_on = true;
+				this.menuOptions.editionPanel.free_draw.setText("Free Draw: On");	
+			}
+		});
+
+		this.setBackground(Color.CYAN);
 		this.setLayout(new BorderLayout());
 		this.add(menuOptions, BorderLayout.WEST);
 		this.add(canvas, BorderLayout.CENTER);
 		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
+		this.canvas.addMouseMotionListener(this);
 		this.canvas.addMouseListener(this);
 	}
 
@@ -155,6 +177,22 @@ public class Controller extends JPanel implements MouseListener {
 
 	public void setNewFocusedClass(int new_focus) {
 		this.canvas.setNewFocusedClass(new_focus);
+	}
+	
+	public void BrushPainting(){
+		for(int i=0; i < paintBrush.XList().size(); i++){
+			int x = paintBrush.XList().get(i);
+			int y = paintBrush.YList().get(i);
+			canvas.getGraphics().fillOval(x, y, 5, 5);
+		}
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent me) {
+		if(paint_brush_on){
+			paintBrush.SavePoints(me.getX(), me.getY());
+			BrushPainting();
+		}
 	}
 
 	@Override
@@ -171,16 +209,12 @@ public class Controller extends JPanel implements MouseListener {
 		// this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
 		// this.repaint();
 	}
-
 	@Override
-	public void mouseReleased(MouseEvent me) {
-	}
-
+	public void mouseReleased(MouseEvent me) {}
 	@Override
-	public void mouseEntered(MouseEvent me) {
-	}
-
+	public void mouseEntered(MouseEvent me) {}
 	@Override
-	public void mouseExited(MouseEvent me) {
-	}
+	public void mouseExited(MouseEvent me) {}
+	@Override
+	public void mouseMoved(MouseEvent e) {}
 }

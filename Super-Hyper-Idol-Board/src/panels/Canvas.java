@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.awt.event.MouseMotionListener;
 import java.io.Serializable;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -16,12 +18,14 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
     private ArrayList<CanvasClass> canvasClasses;
     public int focused_class;
     public int moving_class;
+    private Color focused_bound_color;
     
     public Canvas() {
         super();
         
         focused_class = -1; // There's no focused class at the beginning
         moving_class = -1;
+        focused_bound_color = new Color(50, 205, 231);
         this.setLayout(null);
         this.setBackground(Color.white);
         this.addMouseMotionListener(this);
@@ -33,18 +37,16 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
         this.canvasClasses.add(new CanvasClass("New Class"));
         this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
         this.setNewFocusedClass(canvasClasses.size()-1);
-        // this.canvasClasses.get(this.canvasClasses.size()-1).focusGained(null);
         this.repaint();
     }
 
     public void setNewFocusedClass(int new_focus_on) {
-        if (this.focused_class != -1)
-        	this.canvasClasses.get(this.focused_class).focusLost(null);
-            // canvasClasses.get(focused_class).setFocused(false);
+        if (focused_class != -1)
+            canvasClasses.get(focused_class).focusLost(null);
+        focused_class = new_focus_on;
         if (new_focus_on == -1)
             return;
-        this.focused_class = new_focus_on;
-        this.canvasClasses.get(new_focus_on).focusGained(null);
+        canvasClasses.get(new_focus_on).focusGained(null);
     }
 
     public ArrayList<CanvasClass> getCanvasClasses() {
@@ -60,14 +62,13 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
     }
 
     public boolean deleteCanvasClass(int k) {
-        if (k < 0 || this.canvasClasses.size() <= k)
+        if (k < 0 || canvasClasses.size() <= k)
             return false;
         if (k == focused_class)
             this.setNewFocusedClass(-1);
         if (k < focused_class)
             setNewFocusedClass(focused_class-1);
-        this.remove(this.canvasClasses.get(k));
-        this.canvasClasses.remove(k);
+        canvasClasses.remove(k);
         return true;
     }
 
@@ -81,6 +82,9 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // for (int i=0;i<canvasClasses.size();++i) {
+        //     canvasClasses.get(i).paintComponent(g);
+        // }
     }
     
     public CanvasClass getFocusedCanvasClass() {
@@ -101,25 +105,38 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
 
     @Override
     public void mouseMoved(MouseEvent me) {}
+
     @Override
-    public void mouseClicked(MouseEvent me) {
-        // System.out.println(me.getX()+", "+me.getY());
-        int clickedOn = clickedOnAnyClass(me.getX(), me.getY());
+    public void mouseClicked(MouseEvent event) {
+        // TODO Auto-generated method stub
+        int clickedOn = this.clickedOnAnyClass(event.getX(), event.getY());
         this.setNewFocusedClass(clickedOn);
         moving_class = clickedOn;
     }
+
     @Override
-    public void mousePressed(MouseEvent me) {
-        int clickedOn = clickedOnAnyClass(me.getX(), me.getY());
+    public void mouseEntered(MouseEvent arg0) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent event) {
+        int clickedOn = this.clickedOnAnyClass(event.getX(), event.getY());
         this.setNewFocusedClass(clickedOn);
         moving_class = clickedOn;
     }
-    @Override
-    public void mouseEntered(MouseEvent arg0) {}
-    @Override
-    public void mouseExited(MouseEvent arg0) {}
+
     @Override
     public void mouseReleased(MouseEvent arg0) {
+        // TODO Auto-generated method stub
         moving_class = -1;
+        
     }
 }
