@@ -3,32 +3,33 @@ package controller;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
 import panels.*;
 
-public class Controller extends JPanel implements MouseListener {
+public class Controller extends JPanel implements MouseListener, Serializable {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
 	private int name_meth_attr_flag;
 
 	public Controller() {
-		try {
-			ObjectInputStream readingFile = new ObjectInputStream(new FileInputStream("canvas.dat"));
-			this.canvas = (Canvas)readingFile.readObject();
-			readingFile.close();
-		}
-		catch (Exception e) {
-			System.out.println(e);
-			this.canvas = new Canvas(); // View
-		}
+		this.canvas = new Canvas(); // View
+		// try {
+		// 	ObjectInputStream readingFile = new ObjectInputStream(new FileInputStream("canvas.dat"));
+		// 	this.canvas = (Canvas)readingFile.readObject();
+		// 	readingFile.close();
+		// }
+		// catch (Exception e) {
+		// 	System.out.println(e);
+		// 	this.canvas = new Canvas(); // View
+		// }
 		this.menuOptions = new MenuOptions(); // Model
 		this.setFocusable(false);
 	  
@@ -113,8 +114,8 @@ public class Controller extends JPanel implements MouseListener {
 		menuOptions.layerSwitcherButtons.save.addActionListener(event -> {
 			System.out.println("Progress saved.");
 			try {
-				ObjectOutputStream writingFile = new ObjectOutputStream(new FileOutputStream("canvas.dat"));
-				writingFile.writeObject(this.canvas);
+				ObjectOutputStream writingFile = new ObjectOutputStream(new FileOutputStream("controller.dat"));
+				writingFile.writeObject(this);
 				writingFile.close();
 			}
 			catch (Exception e) {

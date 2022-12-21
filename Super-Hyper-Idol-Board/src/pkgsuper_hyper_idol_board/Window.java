@@ -2,7 +2,12 @@ package pkgsuper_hyper_idol_board;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
+
 import javax.swing.JFrame;
+
+import controller.Controller;
 
 public class Window extends JFrame {
    public Window() {
@@ -12,7 +17,17 @@ public class Window extends JFrame {
       this.setTitle("Idol Board");
       this.setFocusable(false);
 
-      this.add(new controller.Controller());
+      Controller controller;
+ 		try {
+			ObjectInputStream readingFile = new ObjectInputStream(new FileInputStream("controller.dat"));
+			controller = (Controller)readingFile.readObject();
+			readingFile.close();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			controller = new Controller(); // View
+      }
+      this.add(controller);
 
       this.setVisible(true);
       this.setBackground(Color.black);
