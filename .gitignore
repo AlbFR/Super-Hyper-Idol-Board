@@ -24,4 +24,6 @@ hs_err_pid*
 /Super-Hyper-Idol-Board/build/
 
 # vscode config
-/.vscode
+.vscode/*
+
+*.dat

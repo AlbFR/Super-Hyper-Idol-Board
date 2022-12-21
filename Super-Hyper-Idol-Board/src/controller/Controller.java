@@ -119,6 +119,7 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 
 		menuOptions.editionPanel.erase_all.addActionListener(event -> {
 			this.canvas.eraseAll();
+			this.paintBrush2.eraseAll();
 			this.canvas.repaint();
 		});
 

@@ -18,5 +18,10 @@ public class PaintBrush2 {
     public LinkedList <Integer> YList(){
         return this.y;
     }
+
+    public void eraseAll() {
+        x = new LinkedList();
+        y = new LinkedList();
+    }
     
 }
