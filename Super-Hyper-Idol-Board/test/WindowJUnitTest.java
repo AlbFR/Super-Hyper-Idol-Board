@@ -10,11 +10,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import pkgsuper_hyper_idol_board.Window;
+
 /**
  *
  * @author albfr
  */
 public class WindowJUnitTest {
+    Window w;
     
     public WindowJUnitTest() {
     }
@@ -29,6 +32,7 @@ public class WindowJUnitTest {
     
     @Before
     public void setUp() {
+        w = new Window();
     }
     
     @After
@@ -40,4 +44,8 @@ public class WindowJUnitTest {
     //
     // @Test
     // public void hello() {}
+    @Test
+    public void createNewCanvasClass() {
+        this.w.controller.canvas.createNewCanvasClass();
+    }
 }

@@ -7,6 +7,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
@@ -18,7 +19,7 @@ import canvasObjects.PaintBrush;
 import panels.*;
 
 public class Controller extends JPanel implements MouseListener, MouseMotionListener {
-	private Canvas canvas;
+	public Canvas canvas;
 	private MenuOptions menuOptions;
 	private PaintBrush paintBrush;
 	private int name_meth_attr_flag;
@@ -31,7 +32,10 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 			this.canvas = (Canvas)readingFile.readObject();
 			readingFile.close();
 		}
-		catch (Exception e) {
+		catch (IOException e) {
+			System.out.println(e);
+		}
+		catch (ClassNotFoundException e) {
 			System.out.println(e);
 		}
 		this.menuOptions = new MenuOptions(); // Model

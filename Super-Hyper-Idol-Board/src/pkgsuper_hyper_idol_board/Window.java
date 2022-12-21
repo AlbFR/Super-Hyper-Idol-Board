@@ -8,14 +8,16 @@ import javax.swing.JFrame;
 import controller.Controller;
 
 public class Window extends JFrame {
+   public Controller controller;
    public Window() {
       super();
       this.setSize(1100, 700);
       this.setLayout(new BorderLayout(160, 40));
       this.setTitle("Super Idol Board");
       this.setFocusable(false);
-
-      this.add(new Controller());
+      
+      controller = new Controller();
+      this.add(controller);
 
       this.setVisible(true);
       this.setBackground(Color.black);
