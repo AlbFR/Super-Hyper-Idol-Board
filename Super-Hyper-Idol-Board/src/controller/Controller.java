@@ -186,22 +186,12 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		// this.canvas.moving_class = this.canvas.clickedOnAnyClass(me.getX(), me.getY());
 		// this.repaint();
 	}
-
 	@Override
-	public void mouseReleased(MouseEvent me) {
-	}
-
+	public void mouseReleased(MouseEvent me) {}
 	@Override
-	public void mouseEntered(MouseEvent me) {
-	}
-
+	public void mouseEntered(MouseEvent me) {}
 	@Override
-	public void mouseExited(MouseEvent me) {
-	}
-
+	public void mouseExited(MouseEvent me) {}
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseMoved(MouseEvent e) {}
 }
