@@ -22,7 +22,7 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 	private MenuOptions menuOptions;
 	private PaintBrush paintBrush;
 	private int name_meth_attr_flag;
-	private boolean paint_brush_on = false;
+	private boolean paint_brush_on;
 
 	public Controller() {
 		this.canvas = new Canvas(); // View
@@ -36,6 +36,7 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		}
 		this.menuOptions = new MenuOptions(); // Model
 		this.paintBrush = new PaintBrush();
+		paint_brush_on = false;
 		this.setFocusable(false);
 	  
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
@@ -149,11 +150,12 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		});
 
 		menuOptions.editionPanel.free_draw.addActionListener(event -> {
-			if(paint_brush_on){
-				paint_brush_on = false;
+			if (paint_brush_on){
+				this.paint_brush_on = false;
 				this.menuOptions.editionPanel.free_draw.setText("Free Draw: Off");
-			}else {
-				paint_brush_on = true;
+			}
+			else {
+				this.paint_brush_on = true;
 				this.menuOptions.editionPanel.free_draw.setText("Free Draw: On");	
 			}
 		});
@@ -170,8 +172,6 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// menuOptions.paintComponent(g);
-		// canvas.paintComponent(g);
 	}
 
 	public void setNewFocusedClass(int new_focus) {
@@ -188,7 +188,7 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 
 	@Override
 	public void mouseDragged(MouseEvent me) {
-		if(paint_brush_on){
+		if(this.paint_brush_on) {
 			paintBrush.SavePoints(me.getX(), me.getY());
 			BrushPainting();
 		}
