@@ -4,26 +4,25 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.event.KeyEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
 
 //import canvasObjects.PaintBrush;
-import canvasObjects.PaintBrush2;
+import canvasObjects.PaintBrush;
 import panels.*;
 
 public class Controller extends JPanel implements MouseListener, MouseMotionListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
-	private PaintBrush2 paintBrush2;
+	private PaintBrush paintBrush;
 	private int name_meth_attr_flag;
 	private boolean paint_brush_on = false;
 
 	public Controller() {
 		canvas = new Canvas(); // View
 		menuOptions = new MenuOptions(); // Model
-		paintBrush2 = new PaintBrush2();
+		paintBrush = new PaintBrush();
 		this.setFocusable(false);
 	  
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
@@ -119,7 +118,7 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 
 		menuOptions.editionPanel.erase_all.addActionListener(event -> {
 			this.canvas.eraseAll();
-			this.paintBrush2.eraseAll();
+			this.paintBrush.eraseAll();
 			this.canvas.repaint();
 		});
 
@@ -158,9 +157,9 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 	}
 	
 	public void BrushPainting(){
-		for(int i=0; i < paintBrush2.XList().size(); i++){
-			int x = paintBrush2.XList().get(i);
-			int y = paintBrush2.YList().get(i);
+		for(int i=0; i < paintBrush.XList().size(); i++){
+			int x = paintBrush.XList().get(i);
+			int y = paintBrush.YList().get(i);
 			canvas.getGraphics().fillOval(x, y, 5, 5);
 		}
 	}
@@ -168,7 +167,7 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	public void mouseDragged(MouseEvent me) {
 		if(paint_brush_on){
-			paintBrush2.SavePoints(me.getX(), me.getY());
+			paintBrush.SavePoints(me.getX(), me.getY());
 			BrushPainting();
 		}
 	}
