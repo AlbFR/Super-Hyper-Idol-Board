@@ -2,7 +2,6 @@ package canvasObjects;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
@@ -13,23 +12,17 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-// import org.w3c.dom.events.MouseEvent;
-
 public class CanvasClass extends JPanel implements MouseListener, FocusListener {
 	private static final Color focused_color = new Color(50, 205, 231);
 	private static final Border focused_border = BorderFactory.createLineBorder(focused_color, 1);
-	// private CanvasClassFramework structure;
-	// private CanvasClassLabels labels;
 
 	private CanvasClassName nameLabel;
 	private LabelsPanel attributesPanel;
 	private LabelsPanel methodsPanel;
 
-	// private ArrayList<String> methods;
 	private Color border_color = Color.black;
 	public final static int WIDTH = 100;
 	private boolean focused;
-	private int BASE_HEIGHT_COMPONENT = 5;
 	private int height = NAME_HEIGHT;
 
 	public static final int NAME_HEIGHT = 20;
@@ -56,8 +49,6 @@ public class CanvasClass extends JPanel implements MouseListener, FocusListener 
 		this.add(this.nameLabel);
 		this.add(this.attributesPanel);
 		this.add(this.methodsPanel);
-		System.out.println("The rectangle is " + this.getVisibleRect());
-		System.out.println("The bounds are " + this.getBounds());
 	}
 	public void addAttribute(String attribute) {
 		this.attributesPanel.addLabel(attribute);
@@ -84,7 +75,6 @@ public class CanvasClass extends JPanel implements MouseListener, FocusListener 
 			this.setBorder(BorderFactory.createLineBorder(border_color, 1));
 		}
 		this.focused = focused;
-		// this.structure.setFocused(focused);
 	}
 
 	public boolean clickedOnRectangle(int x, int y) {
@@ -106,7 +96,6 @@ public class CanvasClass extends JPanel implements MouseListener, FocusListener 
 	@Override
 	public void mouseClicked(MouseEvent event) {
 		this.focusGained(null);
-		System.out.println("Clickeaste esta caga de canvasClass");
 	}
 	@Override
 	public void mouseEntered(MouseEvent event) {}
@@ -120,14 +109,10 @@ public class CanvasClass extends JPanel implements MouseListener, FocusListener 
 	public void mouseReleased(MouseEvent event) {}
 	@Override
 	public void focusGained(FocusEvent event) {
-		// this.setBorderColor(focused_color);	
 		this.setFocused(true);
-		System.out.println("Something has been focused");
 	}
 	@Override
 	public void focusLost(FocusEvent event) {
-		// this.setBorderColor(this.border_color);
 		this.setFocused(false);
-		System.out.println("Something has lost its focus");
 	}
 }
