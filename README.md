@@ -1,6 +1,7 @@
-# Super-Hyper-Idol-Board
+# Super-Hyper-Idol-Board Grupo 12
 - Alberto Ferrada Rivas
 - Tomás Contreras Kong
+
 Java application for drawing UML diagrams.
 
 # Usage
@@ -18,14 +19,8 @@ y presionar en Add Attribute o Add Method.
 Las principales mejoras que tuvimos en estos días fueron las siguientes.
 - Mejoras en Experiencia de Usuario (la interfaz es más intuitiva).
 - Al añadir atributos y métodos a una clase, ya no hay un JLabel en la esquina superior izquierda del Canvas.
-<<<<<<< HEAD
 - El punto anterior requirió de una reorganización completa de CanvasClass.java y sus atributos y métodos. Particularmente para su orden y legilibilidad.
 - Implementamos correctamente el guardado de la pantalla mediante Serialización (a excepcion un bug).
-=======
-- El punto anterior requirió de una reorganización completa de CanvasClass.java y sus atributos y métodos.
-Particularmente para su orden y legilibilidad.
-- Implementamos correctamente el guardado de la pantalla mediante Serialización (a excepcion un bug)
->>>>>>> TomBranch
 - Arreglamos bugs visuales importantes.
 - Funcionalidad de pintado de trazo libre implementada, aún con algunos bugs.
 - Botón "Erase all" funcionando correctamente.
