@@ -14,7 +14,7 @@ import panels.*;
 public class Controller extends JPanel implements MouseListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
-	private PaintBrush pb;
+	private PaintBrush paintBrush;
 	private int name_meth_attr_flag;
 	private boolean paint_brush_on = false;
 
@@ -126,8 +126,8 @@ public class Controller extends JPanel implements MouseListener {
 		menuOptions.editionPanel.free_draw.addActionListener(event -> {
 			paint_brush_on = true;
 			
-			pb = new PaintBrush();
-			this.canvas.add(pb);
+			paintBrush = new PaintBrush();
+			this.canvas.add(paintBrush);
 			this.canvas.repaint();
 		});
 
