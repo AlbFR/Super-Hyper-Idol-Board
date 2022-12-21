@@ -6,13 +6,20 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.FileOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
 //import canvasObjects.PaintBrush;
 import canvasObjects.PaintBrush;
 import panels.*;
 
-public class Controller extends JPanel implements MouseListener, MouseMotionListener {
+public class Controller extends JPanel implements MouseListener, MouseMotionListener, Serializable {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
 	private PaintBrush paintBrush;
@@ -20,9 +27,9 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 	private boolean paint_brush_on = false;
 
 	public Controller() {
-		canvas = new Canvas(); // View
-		menuOptions = new MenuOptions(); // Model
-		paintBrush = new PaintBrush();
+		this.canvas = new Canvas(); // View
+		this.menuOptions = new MenuOptions(); // Model
+		this.paintBrush = new PaintBrush();
 		this.setFocusable(false);
 	  
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
@@ -105,6 +112,14 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 
 		menuOptions.layerSwitcherButtons.save.addActionListener(event -> {
 			System.out.println("Progress saved.");
+			try {
+				ObjectOutputStream writingFile = new ObjectOutputStream(new FileOutputStream("controller.dat"));
+				writingFile.writeObject(this);
+				writingFile.close();
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
 		});
 
 		menuOptions.layerSwitcherButtons.layer_two.addActionListener(event -> {
