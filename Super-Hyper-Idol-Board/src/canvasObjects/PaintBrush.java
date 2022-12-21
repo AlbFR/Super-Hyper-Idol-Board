@@ -6,8 +6,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.JPanel;
 
-public class PaintBrush extends Canvas implements KeyListener,MouseListener,MouseMotionListener {
+public class PaintBrush extends JPanel implements KeyListener,MouseListener,MouseMotionListener {
     private Color color;
     private int x=-1, y=-1, x2=-1, y2=-1;
 
