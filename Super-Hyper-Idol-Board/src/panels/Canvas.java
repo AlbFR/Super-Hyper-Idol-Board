@@ -5,13 +5,14 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.MouseMotionListener;
+import java.io.Serializable;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
 import canvasObjects.CanvasClass;
 
-public class Canvas extends JPanel implements MouseMotionListener, MouseListener { 
+public class Canvas extends JPanel implements MouseMotionListener, MouseListener, Serializable { 
     private ArrayList<CanvasClass> canvasClasses;
     public int focused_class;
     public int moving_class;

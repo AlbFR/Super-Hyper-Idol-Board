@@ -3,9 +3,12 @@ package controller;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JPanel;
 
@@ -17,8 +20,16 @@ public class Controller extends JPanel implements MouseListener {
 	private int name_meth_attr_flag;
 
 	public Controller() {
-		canvas = new Canvas(); // View
-		menuOptions = new MenuOptions(); // Model
+		try {
+			ObjectInputStream readingFile = new ObjectInputStream(new FileInputStream("canvas.dat"));
+			this.canvas = (Canvas)readingFile.readObject();
+			readingFile.close();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			this.canvas = new Canvas(); // View
+		}
+		this.menuOptions = new MenuOptions(); // Model
 		this.setFocusable(false);
 	  
 		menuOptions.editionPanel.create_class_button.addActionListener(event -> {
@@ -101,6 +112,14 @@ public class Controller extends JPanel implements MouseListener {
 
 		menuOptions.layerSwitcherButtons.save.addActionListener(event -> {
 			System.out.println("Progress saved.");
+			try {
+				ObjectOutputStream writingFile = new ObjectOutputStream(new FileOutputStream("canvas.dat"));
+				writingFile.writeObject(this.canvas);
+				writingFile.close();
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
 		});
 
 		menuOptions.layerSwitcherButtons.layer_two.addActionListener(event -> {
