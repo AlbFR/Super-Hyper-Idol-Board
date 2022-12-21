@@ -19,6 +19,6 @@ public abstract class CanvasClassTextLabel extends JLabel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println(this.getVisibleRect());
+        // System.out.println(this.getVisibleRect());
     }
 }

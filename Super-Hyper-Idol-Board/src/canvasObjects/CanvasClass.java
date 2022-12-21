@@ -3,30 +3,35 @@ package canvasObjects;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 // import org.w3c.dom.events.MouseEvent;
 
-public class CanvasClass extends JPanel implements MouseListener {
-	private static final Color focused_color = new Color(50, 230, 215);
+public class CanvasClass extends JPanel implements MouseListener, FocusListener {
+	private static final Color focused_color = new Color(50, 205, 231);
 	private static final Border focused_border = BorderFactory.createLineBorder(focused_color, 1);
 	// private CanvasClassFramework structure;
 	// private CanvasClassLabels labels;
 
 	private CanvasClassName nameLabel;
-	private AttributesPanel attributesPanel;
+	private LabelsPanel attributesPanel;
+	private LabelsPanel methodsPanel;
 
-	private ArrayList<String> methods;
+	// private ArrayList<String> methods;
 	private Color border_color = Color.black;
-	private final static int WIDTH = 100;
+	public final static int WIDTH = 100;
 	private boolean focused;
 	private int BASE_HEIGHT_COMPONENT = 5;
-	private int height = BASE_HEIGHT_COMPONENT * 2 + NAME_HEIGHT;
+	private int height = NAME_HEIGHT;
 
 	public static final int NAME_HEIGHT = 20;
 	public static final int ATTRIBUTE_HEIGHT = 15;
@@ -35,13 +40,15 @@ public class CanvasClass extends JPanel implements MouseListener {
 
 	public CanvasClass(String name) {
 		this.setBounds(20, 20, WIDTH, height);
-		this.setLayout(null);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setFocusable(true);
+		this.addFocusListener(this);
 
 		this.nameLabel = new CanvasClassName(name, this.getBounds().x, this.getBounds().y);
-		this.attributesPanel = new AttributesPanel(0, CanvasClassName.HEIGHT);
+		this.attributesPanel = new LabelsPanel(0, CanvasClassName.HEIGHT);
+		this.methodsPanel = new LabelsPanel(0, CanvasClassName.HEIGHT);
 
-		this.methods = new ArrayList<String>();
+		// this.methods = new ArrayList<String>();
 
 		// this.structure = new CanvasClassFramework(this.getBounds().x, this.getBounds().y);
 		// this.labels = new CanvasClassLabels(this.getBounds().x, this.getBounds().y, name);
@@ -51,21 +58,22 @@ public class CanvasClass extends JPanel implements MouseListener {
 		this.setBackground(Color.WHITE);
 		
 		// this.add(this.labels);
-		this.add(this.attributesPanel);
 		this.add(this.nameLabel);
+		// this.attributesPanel.setMinimumSize(new Dimension(CanvasClass.WIDTH, 5));
+		// this.attributesPanel.setPreferredSize(new Dimension(CanvasClass.WIDTH, 5));
+		this.add(this.attributesPanel);
+		// this.methodsPanel.setMinimumSize(new Dimension(CanvasClass.WIDTH, 5));
+		this.add(this.methodsPanel);
 	}
+
 	public void addAttribute(String attribute) {
-		this.attributesPanel.addAttribute(attribute);
+		this.attributesPanel.addLabel(attribute);
 		this.setSize(WIDTH, this.getBounds().height + CanvasClassAttribute.HEIGHT);
-		// attributes.add(attribute);
-		// structure.addAttribute();
-		// this.labels.addAttribute(attribute);
-		// this.add(this.labels.get(this.labels.size()-1));
 	}
+
 	public void addMethod(String method) {
-		methods.add(method);
-		// structure.addMethod();
-		// this.labels.addMethod(method);
+		this.methodsPanel.addLabel(method);
+		this.setSize(WIDTH, this.getBounds().height + CanvasClassAttribute.HEIGHT);
 	}
 	
 	// public boolean clickedOnRectangle(int x, int y) {
@@ -74,19 +82,26 @@ public class CanvasClass extends JPanel implements MouseListener {
 	
 	public void setCanvasClassName(String name){
 		this.nameLabel.setText(name);
-		// this.labels.setCanvasClassLabelName(name);
 	}
 
 	public void setBorderColor(Color color) {
 		this.border_color = color;
 	}
 
-	public void setFocused(boolean focused){
+	public boolean clickedOnRectangle(int x, int y) {
+		if (x < this.getBounds().x || this.getBounds().x+this.getBounds().width < x)
+			return false;
+		if (y < this.getBounds().y || this.getBounds().y+this.getBounds().height < y)
+			return false;
+		return true;
+	}
+
+	public void setFocused(boolean focused) {
 		if (focused) {
 			this.setBorder(focused_border);
 		}
 		else {
-			this.setBorder(BorderFactory.createLineBorder(border_color, 1));
+			this.setBorder(BorderFactory.createLineBorder(this.border_color, 1));
 		}
 		this.focused = focused;
 		// this.structure.setFocused(focused);
@@ -94,19 +109,10 @@ public class CanvasClass extends JPanel implements MouseListener {
 	
 	public void recalculateGeometry(int x, int y) {
 		this.setBounds(x, y, WIDTH, this.getBounds().height);
-		// System.out.println(this.getVisibleRect());
-		// this.attributesPanel.recalculateGeometry(this.getBounds().x, this.getBounds().y + CanvasClassName.HEIGHT);
-		// this.attributesPanel.recalculateGeometry(0, Canv);
-		// this.structure.recalculateGeometry(x, y);
-		// this.labels.recalculateGeometry(x, y);
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		this.nameLabel.paintComponent(g);
-		// this.attributesPanel.paintComponent(g);
-		// this.structure.paint(g);
-		// this.labels.paintComponent(g);
 	}
 	
 	@Override
@@ -122,4 +128,12 @@ public class CanvasClass extends JPanel implements MouseListener {
 	public void mousePressed(MouseEvent event) {}
 	@Override
 	public void mouseReleased(MouseEvent event) {}
+	@Override
+	public void focusGained(FocusEvent event) {
+		this.setFocused(true);	
+	}
+	@Override
+	public void focusLost(FocusEvent event) {
+		this.setFocused(false);	
+	}
 }

@@ -4,12 +4,11 @@ import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Color;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import enums.SelectedDrawingOption;
 import panels.menuOptions.EditionPanel;
 import panels.menuOptions.LayerSwitcherButtons;
-import enums.SelectedDrawingOption;
 import panels.menuOptions.ColorComboBox;
 import panels.menuOptions.TextFieldPanel;
 

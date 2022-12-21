@@ -6,7 +6,6 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import buttons.menuOptions.*;
-
 import enums.SelectedDrawingOption;
 
 public class EditionPanel extends JPanel {

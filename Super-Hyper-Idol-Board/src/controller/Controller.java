@@ -14,7 +14,9 @@ import panels.*;
 public class Controller extends JPanel implements MouseListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
+	private PaintBrush pb;
 	private int name_meth_attr_flag;
+	private boolean paint_brush_on = false;
 
 	public Controller() {
 		canvas = new Canvas(); // View
@@ -139,8 +141,8 @@ public class Controller extends JPanel implements MouseListener {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		menuOptions.paintComponent(g);
-		canvas.paintComponent(g);
+		// menuOptions.paintComponent(g);
+		// canvas.paintComponent(g);
 	}
 
 	public void setNewFocusedClass(int new_focus) {
