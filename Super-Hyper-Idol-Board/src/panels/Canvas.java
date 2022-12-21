@@ -3,28 +3,28 @@ package panels;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import canvasObjects.CanvasClass;
 
-public class Canvas extends JPanel implements MouseMotionListener, MouseListener { 
+public class Canvas extends JPanel implements MouseMotionListener { 
     private ArrayList<CanvasClass> canvasClasses;
     public int focused_class;
     public int moving_class;
+    private Color focused_bound_color;
     
     public Canvas() {
         super();
         
         focused_class = -1; // There's no focused class at the beginning
         moving_class = -1;
+        focused_bound_color = new Color(50, 205, 231);
         this.setLayout(null);
         this.setBackground(Color.white);
         this.addMouseMotionListener(this);
-        this.addMouseListener(this);
         canvasClasses = new ArrayList<CanvasClass>();
     }   
 
@@ -32,41 +32,38 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
         this.canvasClasses.add(new CanvasClass("New Class"));
         this.add(this.canvasClasses.get(this.canvasClasses.size()-1));
         this.setNewFocusedClass(canvasClasses.size()-1);
-        // this.canvasClasses.get(this.canvasClasses.size()-1).focusGained(null);
         this.repaint();
     }
 
     public void setNewFocusedClass(int new_focus_on) {
-        if (this.focused_class != -1)
-        	this.canvasClasses.get(this.focused_class).focusLost(null);
-            // canvasClasses.get(focused_class).setFocused(false);
+        if (focused_class != -1)
+            canvasClasses.get(focused_class).setFocused(false);
+        focused_class = new_focus_on;
         if (new_focus_on == -1)
             return;
-        this.focused_class = new_focus_on;
-        this.canvasClasses.get(new_focus_on).focusGained(null);
+        canvasClasses.get(new_focus_on).setFocused(true);
     }
 
     public ArrayList<CanvasClass> getCanvasClasses() {
         return this.canvasClasses;
     }
 
-    public int clickedOnAnyClass(int x, int y) {
-        for (int i=0;i<canvasClasses.size();++i) {
-            if (canvasClasses.get(i).clickedOnRectangle(x, y))
-                return i;
-        }
-        return -1;
-    }
+    // public int clickedOnAnyClass(int x, int y) {
+    //     for (int i=0;i<canvasClasses.size();++i) {
+    //         if (canvasClasses.get(i).clickedOnRectangle(x, y))
+    //             return i;
+    //     }
+    //     return -1;
+    // }
 
     public boolean deleteCanvasClass(int k) {
-        if (k < 0 || this.canvasClasses.size() <= k)
+        if (k < 0 || canvasClasses.size() <= k)
             return false;
         if (k == focused_class)
             this.setNewFocusedClass(-1);
         if (k < focused_class)
             setNewFocusedClass(focused_class-1);
-        this.remove(this.canvasClasses.get(k));
-        this.canvasClasses.remove(k);
+        canvasClasses.remove(k);
         return true;
     }
 
@@ -80,6 +77,9 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // for (int i=0;i<canvasClasses.size();++i) {
+        //     canvasClasses.get(i).paintComponent(g);
+        // }
     }
     
     public CanvasClass getFocusedCanvasClass() {
@@ -91,34 +91,13 @@ public class Canvas extends JPanel implements MouseMotionListener, MouseListener
    
     @Override
     public void mouseDragged(MouseEvent me) {
-        if (moving_class != -1){
+        if (focused_class != -1){
             // canvasClasses.get(focused_class).setXY(me.getX(), me.getY());
-            this.canvasClasses.get(moving_class).recalculateGeometry(me.getX(), me.getY());
+            this.canvasClasses.get(focused_class).recalculateGeometry(me.getX(), me.getY());
             this.repaint();
         }
     }
 
     @Override
     public void mouseMoved(MouseEvent me) {}
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        // System.out.println(me.getX()+", "+me.getY());
-        int clickedOn = clickedOnAnyClass(me.getX(), me.getY());
-        this.setNewFocusedClass(clickedOn);
-        moving_class = clickedOn;
-    }
-    @Override
-    public void mousePressed(MouseEvent me) {
-        int clickedOn = clickedOnAnyClass(me.getX(), me.getY());
-        this.setNewFocusedClass(clickedOn);
-        moving_class = clickedOn;
-    }
-    @Override
-    public void mouseEntered(MouseEvent arg0) {}
-    @Override
-    public void mouseExited(MouseEvent arg0) {}
-    @Override
-    public void mouseReleased(MouseEvent arg0) {
-        moving_class = -1;
-    }
 }
