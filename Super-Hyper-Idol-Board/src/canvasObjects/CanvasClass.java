@@ -67,7 +67,6 @@ public class CanvasClass extends JPanel implements MouseListener, FocusListener 
 		this.methodsPanel.addLabel(method);
 		this.setSize(WIDTH, this.getBounds().height + CanvasClassAttribute.HEIGHT);
 	}
-
 	public void setCanvasClassName(String name){
 		this.nameLabel.setText(name);
 	}

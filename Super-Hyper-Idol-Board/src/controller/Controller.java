@@ -6,15 +6,17 @@ import java.awt.event.MouseListener;
 import java.awt.event.KeyEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import javax.swing.JPanel;
 
+import canvasObjects.PaintBrush;
 import panels.*;
 
 public class Controller extends JPanel implements MouseListener {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
+	private PaintBrush pb;
 	private int name_meth_attr_flag;
+	private boolean paint_brush_on = false;
 
 	public Controller() {
 		canvas = new Canvas(); // View
@@ -121,6 +123,15 @@ public class Controller extends JPanel implements MouseListener {
 
 		});
 
+		menuOptions.editionPanel.free_draw.addActionListener(event -> {
+			paint_brush_on = true;
+			
+			pb = new PaintBrush();
+			this.canvas.add(pb);
+			this.canvas.repaint();
+		});
+
+		this.setBackground(Color.CYAN);
 		this.setLayout(new BorderLayout());
 		this.add(menuOptions, BorderLayout.WEST);
 		this.add(canvas, BorderLayout.CENTER);
