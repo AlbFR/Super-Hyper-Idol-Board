@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
-import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
@@ -34,7 +33,6 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		}
 		catch (Exception e) {
 			System.out.println(e);
-			this.canvas = new Canvas(); // View
 		}
 		this.menuOptions = new MenuOptions(); // Model
 		this.paintBrush = new PaintBrush();
@@ -119,13 +117,14 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		});
 
 		menuOptions.layerSwitcherButtons.save.addActionListener(event -> {
-			System.out.println("Progress saved.");
 			try {
 				ObjectOutputStream writingFile = new ObjectOutputStream(new FileOutputStream("canvas.dat"));
 				writingFile.writeObject(this.canvas);
 				writingFile.close();
+				System.out.println("Progress saved");
 			}
 			catch (Exception e) {
+				System.out.println("AN ERROR HAS OCCURED WHILE SAVING");
 				System.out.println(e);
 			}
 		});
