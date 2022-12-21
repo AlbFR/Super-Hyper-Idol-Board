@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import canvasObjects.PaintBrush;
 import panels.*;
 
-public class Controller extends JPanel implements MouseListener, MouseMotionListener, Serializable {
+public class Controller extends JPanel implements MouseListener, MouseMotionListener, Serializable, Cloneable {
 	private Canvas canvas;
 	private MenuOptions menuOptions;
 	private PaintBrush paintBrush;
@@ -114,13 +114,19 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 			System.out.println("Progress saved.");
 			try {
 				ObjectOutputStream writingFile = new ObjectOutputStream(new FileOutputStream("controller.dat"));
-				writingFile.writeObject(this);
+				Controller xd = (Controller)this.clone();
+				writingFile.writeObject(xd);
 				writingFile.close();
 			}
 			catch (Exception e) {
 				System.out.println(e);
 			}
 		});
+
+		public Object clone() throws CloneNotSupportedException {
+			Controller c = (Controller)super.clone();
+			return c;
+		}
 
 		menuOptions.layerSwitcherButtons.layer_two.addActionListener(event -> {
 			if (menuOptions.layerSwitcherButtons.getInLayerOne() == false) {
