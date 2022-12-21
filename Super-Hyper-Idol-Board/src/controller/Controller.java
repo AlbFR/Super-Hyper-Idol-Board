@@ -46,8 +46,8 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		});
 
 		menuOptions.editionPanel.delete_class_button.addActionListener(event -> {
-			canvas.deleteCanvasClass(canvas.focused_class);
-			canvas.repaint();
+			this.canvas.deleteCanvasClass(canvas.focused_class);
+			this.canvas.repaint();
 		});
 
 		menuOptions.editionPanel.change_name_button.addActionListener(event -> {
