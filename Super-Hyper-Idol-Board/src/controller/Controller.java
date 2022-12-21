@@ -128,8 +128,13 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 		});
 
 		menuOptions.editionPanel.free_draw.addActionListener(event -> {
-			paint_brush_on = true;
-			
+			if(paint_brush_on){
+				paint_brush_on = false;
+				this.menuOptions.editionPanel.free_draw.setText("Free Draw: Off");
+			}else {
+				paint_brush_on = true;
+				this.menuOptions.editionPanel.free_draw.setText("Free Draw: On");	
+			}
 		});
 
 		this.setBackground(Color.CYAN);
@@ -162,8 +167,10 @@ public class Controller extends JPanel implements MouseListener, MouseMotionList
 
 	@Override
 	public void mouseDragged(MouseEvent me) {
-		paintBrush2.SavePoints(me.getX(), me.getY());
-		BrushPainting();
+		if(paint_brush_on){
+			paintBrush2.SavePoints(me.getX(), me.getY());
+			BrushPainting();
+		}
 	}
 
 	@Override

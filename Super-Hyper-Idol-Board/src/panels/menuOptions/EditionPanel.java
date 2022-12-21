@@ -32,7 +32,7 @@ public class EditionPanel extends JPanel {
       change_color_button = new MenuButton("Change Color");
       draw_line_button = new MenuButton("Draw Line");
       diamond_button = new MenuButton("Draw Diamond");
-      free_draw = new MenuButton("Free Draw");
+      free_draw = new MenuButton("Free Draw: Off");
       erase_all = new MenuButton("Erase All");
 
       this.setLayout(new GridLayout(5, 2));
