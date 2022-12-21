@@ -1,14 +1,12 @@
 package canvasObjects;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
-public class PaintBrush extends JPanel implements KeyListener,MouseListener,MouseMotionListener {
+public class PaintBrush extends JPanel implements MouseListener,MouseMotionListener {
     private Color color;
     private int x=-1, y=-1, x2=-1, y2=-1;
 
@@ -64,10 +62,4 @@ public class PaintBrush extends JPanel implements KeyListener,MouseListener,Mous
     public void mouseExited(MouseEvent e) {}
     @Override
     public void mousePressed(MouseEvent e) {}
-    @Override
-    public void keyPressed(KeyEvent e) {}
-    @Override
-    public void keyReleased(KeyEvent e) {}
-    @Override
-    public void keyTyped(KeyEvent e) {}
 }
